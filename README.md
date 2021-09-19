@@ -8,6 +8,7 @@ A aim was to reproduce a Twitch graph which was shown in a Micode video (https:/
 TODO: discovery mode (make a depth/breadth-first search from a given set of channels like top 100 (by views) French YouTube channels)
 This discovery mode isn't planned to be coded because no particular aim it would fulfill.
 
+Furthermore YouTube Data API v3 was a real headache because of many bugs.
 <!--Furthermore YouTube Data API v3 was a real headache because of many bugs like:
 - using Search: list we can't recover more than ~600 results (channels/videos)
 - too many YouTube end bugs that aren't particularly interesting to notice to users
