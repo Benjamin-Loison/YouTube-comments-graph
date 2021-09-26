@@ -1,0 +1,21 @@
+Tibo InShape
+
+communautary disabled comments
+8 527 742 lines
+
+should have 6 468 868 comments according to realNumberOfComments.py - well finally not countring twice some comments (replying to youtuber for instance) we have 6 652 652 comments which seems to be more close
+ - we can work from that and do my usages and during this step I might distinguish problems maybe
+ - can still check which video has more than theory
+ - after new patch have CPP 6 458 175 comments number which makes sens by being a bit under current result with python and not that much likewise may just have 10 693 new comments between
+ 25-08-21#01-58-19-433: working on Tibo InShape (UCpWaR3gNAQGsX48cIlQC0qw) 11 - 4
+ and
+ 28-08-21#08-24-51-422: working on FRANCE 24 (UCCCPCZNChQdGa9EkATeye4g) 58 - 4
+ that's 3 days and 6 hours
+ which makes sens because last two videos have made more than 6k comments in 5 days
+ 
+find with my CPP algo: 7 638 152 comments
+maybe it is because some videos are not repertoried but show with allThreadsRelatedToChannelId parameter
+no hopefully for privateness however the problem may comes from the fact that it might count twice a same comment
+
+none of comments disabled videos have comments
+

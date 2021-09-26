@@ -1,0 +1,22 @@
+benjamin@BenjaminsComputer:/mnt/c/Users/Benjamin/Desktop/BensFolder/DEV/Candco/CPP/Projects/YouTubeCommentsGraph$ ./live.py > logs.txt
+Traceback (most recent call last):
+  File "./live.py", line 132, in <module>
+    workChannel('UCWeg2Pkate69NFdBeuRFTAw')
+  File "./live.py", line 129, in workChannel
+    workVideo(youtuberId, id)
+  File "./live.py", line 83, in workVideo
+    scrape(youtuberId, [], videoId)
+  File "./live.py", line 80, in scrape
+    scrape(youtuberId, comments, video_id, results['nextPageToken'])
+  File "./live.py", line 80, in scrape
+    scrape(youtuberId, comments, video_id, results['nextPageToken'])
+  File "./live.py", line 80, in scrape
+    scrape(youtuberId, comments, video_id, results['nextPageToken'])
+  [Previous line repeated 8 more times]
+  File "./live.py", line 61, in scrape
+    maxResults=100
+  File "/home/benjamin/.local/lib/python3.6/site-packages/googleapiclient/_helpers.py", line 134, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/home/benjamin/.local/lib/python3.6/site-packages/googleapiclient/http.py", line 935, in execute
+    raise HttpError(resp, content, uri=self.uri)
+googleapiclient.errors.HttpError: <HttpError 403 when requesting https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=8ZBXCtqKmaA&pageToken=QURTSl9pMF9tZ01YWWtLdnJKQ0w4OW1vZFVxWlFZc2QzT095bFlSMThxMTV5MmVvSkoxaS1pbjdTbVhKbmRaSlVGQ1ZPUXdoOE43VVNHVQ%3D%3D&textFormat=plainText&maxResults=100&key=YOUR_API_KEY&alt=json returned "The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.". Details: "[{'message': 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.', 'domain': 'youtube.quota', 'reason': 'quotaExceeded'}]">

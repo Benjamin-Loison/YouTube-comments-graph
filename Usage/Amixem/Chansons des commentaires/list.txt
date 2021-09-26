@@ -1,0 +1,21 @@
+0:10 UCyepUuTLgizPMQmINoW0V0w UCgvqvBoSHB1ctlyyhoHrGwQ LwiycISjzmE 2016-10-25T21:37:55Z qui a entendu la cloche du tram à 10:23?
+0:17 UC4LG_52B9-WHEc6api_Qnjg UCgvqvBoSHB1ctlyyhoHrGwQ JUc8HBtlxUc 2015-09-04T19:59:01Z Son zizi il l'a trouvé sur un site chinois ?
+0:26 UCJdS1IVJ0vuSavH_URpQO6w UCgvqvBoSHB1ctlyyhoHrGwQ zU0bFmxfZms 2015-12-17T11:42:57Z Tu te fringue chez celio ? J'ai le meme ! ^^
+0:33 UCx0GEjMAlBEEH1J3XrhxJlg UCgvqvBoSHB1ctlyyhoHrGwQ AlzgT8g-YpI 2015-12-13T23:29:37Z Je viens de me rendre compte que si t'échange les lettres de Maxime t'as Amixem
+0:42 UC7KsCzbAzrsXiOfwWMSQeuA UCgvqvBoSHB1ctlyyhoHrGwQ AlzgT8g-YpI 2016-01-02T05:58:33Z PLAJIA STAR TREK NUL A CHIE C NUL DESABONE !!!
+0:52 UCAldxFNVNBHiqwjupoiksxQ mayazoldyck n'a pas de commentaires publiques sur les vidéos publiques d'Amixem semble t'il "il dit ce compte Twitter alors que c'est un compte insta jpp"
+
+0:58 "T'es pas drôle mes tes vidéos son bien" utilisateur et commentaire non trouvés
+1:07 UCO7UsxwGG51u6saXtWgScYQ Romain Pocquett n'a pas de commentaires publiques sur les vidéos publiques d'Amixem semble t'il "3:11 j'étais en train de me grillé du pain 🥖😂😷🦠"
+1:23 UCVmCOQDQMha388Xop7r5Nkw Lama Rose || UCzvfis63_o0zIbivGS-LcDg Lama Rose a des commentaires sur la chaîne mais pas celui en question
+
+Ca paraît con mais à 0:33 on remarque qu'ils ont changé le "t'échange" par "tu changes" et que donc ce qui est affiché est un photomontage
+De même à 0:52 l'utilisateur existe bien mais n'a semble t'il plus aucun commentaire sur sa chaîne
+
+---------------
+
+UCO7UsxwGG51u6saXtWgScYQ Romain Pocquett in namesBis but not in details ?!
+
+some comments like amixem answer to Celeborn on IpLLonVZW8s isn't referenced if i typed cat UCgvqvBoSHB1ctlyyhoHrGwQ.txt | grep -a "UCgvqvBoSHB1ctlyyhoHrGwQ UC" | grep -v "UCgvqvBoSHB1ctlyyhoHrGwQ UCgvqvBoSHB1ctlyyhoHrGwQ"
+
+or MCTheMiz59 on bx613OLEn_Q 

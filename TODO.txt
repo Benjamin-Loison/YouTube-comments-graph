@@ -1,0 +1,17 @@
+toujours enregistrer en copie d'en un fichier une copie des données téléchargées de youtube
+
+commentaires sur une vidéo donnée:
+
+utilisateur (chaîne, tout le monde en a une ?)
+réponse à un commentaire ? (si oui qui ?)
+
+-> enregistrer (si pas déjà): user id 0 - user id 1
+
+pour chaque nouvel utilisateur découvert, allez sur sa chaîne dans son onglet vidéo et répeter ce processus sur toutes ses vidéos
+
+https://www.googleapis.com/youtube/v3/search?key=YOUR_API_KEY&channelId=UCF_UozwQBJY4WHZ7yilYkjA&part=snippet,id&order=date&maxResults=50
+
+https://apifornia.com/youtube/how-to-get-youtube-comments-youtube-comment-scrapers-for-programmers-and-everyone-else.html
+
+https://jsonformatter.curiousconcept.com/#
+

@@ -1,0 +1,196 @@
+{
+  "kind": "youtube#searchListResponse",
+  "etag": "CENSORED",
+  "prevPageToken": "CKYEEAE",
+  "regionCode": "FR",
+  "pageInfo": {
+    "totalResults": 25019,
+    "resultsPerPage": 23
+  },
+  "items": [
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "tN6-XXq_ZZs"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "JfuYmqUtEDY"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "aEfz-9ajIok"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "hppPVMRDOw0"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "r26OK9T7Rc4"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Ay9kuT_rl2k"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "bRBJfpP_7zU"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "dy23t0bnKbo"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "c1g43FpJ_40"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "PY7nCGsDtCs"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "VhfUmIJrjzM"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "xQJ5R4m5WBk"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "y9OAe0OYybA"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "_y9894GTOWo"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "Bo5DZth4G0k"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "sidrSH-rdQE"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "nRm_x_EYaeQ"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "SHpfkHyRiOo"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "wwBvuvQlVhQ"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "5UxWMbxr_CQ"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "BUucLFLYMjQ"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "qcCRL0FBJlA"
+      }
+    },
+    {
+      "kind": "youtube#searchResult",
+      "etag": "CENSORED",
+      "id": {
+        "kind": "youtube#video",
+        "videoId": "6U6ZcdVl7JA"
+      }
+    }
+  ]
+}
