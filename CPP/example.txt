@@ -1,0 +1,81 @@
+{
+  "kind": "youtube#commentThreadListResponse",
+  "etag": "CENSORED",
+  "nextPageToken": "QURTSl9pMTg3ZU5lV25NZGpOdm5pQmxhdW9TaWtGYmdiNmNtTEEwVkM2WE1hUFVVUGlybFIyRG1tVGVUVkxkQmo3Mk1uQ1kzbkU5MHR5T1Q2RDRnRy1wMkU1WEQwQkRGZUEwUGhjRlZFSG9abjRscU5yZzhoMFZVWHcyQ3BISjJMdWdpWE91YW9Qel95QThjTVdPdVFway1QRl94UW5lUFdBanFZYmVrU1FKSDFMSEhJQTRUcHhmaGVhRjZYUzlBWFROdEtIRG1qZk9vZkdF",
+  "pageInfo": {
+    "totalResults": 87,
+    "resultsPerPage": 100
+  },
+  "items": [
+    {
+      "kind": "youtube#commentThread",
+      "etag": "CENSORED",
+      "id": "UgyWFwN8wDg5jWiXiFx4AaABAg",
+      "snippet": {
+        "channelId": "UCF_UozwQBJY4WHZ7yilYkjA",
+        "videoId": "-cbLD3xKXtk",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "CENSORED",
+          "id": "UgyWFwN8wDg5jWiXiFx4AaABAg",
+          "snippet": {
+            "channelId": "UCF_UozwQBJY4WHZ7yilYkjA",
+            "videoId": "-cbLD3xKXtk",
+            "textDisplay": "laisse poce bleu",
+            "textOriginal": "laisse poce bleu",
+            "authorDisplayName": "Adjax",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/D7vl0YGWYOI20JITRI6QcaacmeM_zoCB7FWh5-yQ57lIAZi5d65-sqKYs5ekMNhnKfqNY3QSKw=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCqPkQu3N8OqYKC5wwE6CmGQ",
+            "authorChannelId": {
+              "value": "UCqPkQu3N8OqYKC5wwE6CmGQ"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2021-07-31T09:58:20Z",
+            "updatedAt": "2021-07-31T09:58:20Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    {
+      "kind": "youtube#commentThread",
+      "etag": "CENSORED",
+      "id": "UgwuwA7z_eZLIShAxN94AaABAg",
+      "snippet": {
+        "channelId": "UCF_UozwQBJY4WHZ7yilYkjA",
+        "videoId": "-cbLD3xKXtk",
+        "topLevelComment": {
+          "kind": "youtube#comment",
+          "etag": "CENSORED",
+          "id": "UgwuwA7z_eZLIShAxN94AaABAg",
+          "snippet": {
+            "channelId": "UCF_UozwQBJY4WHZ7yilYkjA",
+            "videoId": "-cbLD3xKXtk",
+            "textDisplay": "j'adore tes vidéos !!",
+            "textOriginal": "j'adore tes vidéos !!",
+            "authorDisplayName": "Hulkus",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/Cq6Xs7sJMm-80sJHF5PNPJBs0cvniaUUaAoMRt8E6Iu3J9Vpf8KHrtyNauFsWZ2Zqej03xiT8w=s48-c-k-c0x00ffffff-no-rj",
+            "authorChannelUrl": "http://www.youtube.com/channel/UC5eKrsoWRB20SphJPT7w6Zw",
+            "authorChannelId": {
+              "value": "UC5eKrsoWRB20SphJPT7w6Zw"
+            },
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2021-07-22T12:25:17Z",
+            "updatedAt": "2021-07-22T12:25:17Z"
+          }
+        },
+        "canReply": true,
+        "totalReplyCount": 0,
+        "isPublic": true
+      }
+    },
+    ...
+  ]
+}
+

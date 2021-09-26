@@ -1,0 +1,10 @@
+dans l'ordre:
+- la chaîne a l'information: "Pays: France"
+- dans le titre de la chaîne il y a "FR" séparé par des espaces
+- dans les liens de la section "A propos"
+ * si c'est une page facebook, avec la "page transparency" de facebook on a le pays des acteurs intervenant sur la page et si la france est majoritaire le test est satisfait OU si le titre de la page facebook a un article sur wikipedia français et si "pays d'origine" ou "nationalité" france apparaît
+ * si c'est une page twitter, si une géolocalisation de l'utilisateur est fournie contient "Paris"
+ * si c'est un soundcloud et que dans la géolocation "France" apparaît
+ * si c'est un site web, si le registrat où a été enregistré le nom de domaine est ovh
+- regarde si la vidéo la plus vue de la chaîne a la caractéristique "française" (information pas mise à chaque fois)
+- regarde si le titre de la chaîne YouTube a un article sur wikipedia français et si "pays d'origine" ou "nationalité" france apparaît

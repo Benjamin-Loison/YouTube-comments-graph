@@ -1,0 +1,45 @@
+thread begin
+
+{'videoId': 'drOy5akB56w',
+ 'textDisplay': "mec , j'ai un probleme quand je me co a altis craft sa me mais : a fatal error has occured this connection is terminated",
+ 'textOriginal': "mec , j'ai un probleme quand je me co a altis craft sa me mais : a fatal error has occured this connection is terminated",
+ 'authorDisplayName': 'Invalid User',
+ 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj',
+ 'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg',
+ 'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'},
+ 'canRate': True,
+ 'viewerRating': 'none',
+ 'likeCount': 0,
+ 'publishedAt': '2017-05-27T08:10:27Z',
+ 'updatedAt': '2017-05-27T08:10:27Z'}
+
+reply:
+
+{'videoId': 'drOy5akB56w',
+ 'textDisplay': 'okkkk',
+ 'textOriginal': 'okkkk',
+ 'parentId': 'Ugh70UmoMbIzEXgCoAEC',
+ 'authorDisplayName': 'Invalid User',
+ 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj',
+ 'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg',
+ 'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'},
+ 'canRate': True,
+ 'viewerRating': 'none',
+ 'likeCount': 0,
+ 'publishedAt': '2017-05-27T09:46:22Z',
+ 'updatedAt': '2017-05-27T09:46:22Z'}
+
+independant:
+
+{'videoId': 'drOy5akB56w',
+ 'textDisplay': 'Firt',
+ 'textOriginal': 'Firt',
+ 'authorDisplayName': 'ArthurSurYouTube',
+ 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLS0hWL_HTKwhuks537Rn46Lo3x-uG-iWVvVtKWAyw=s48-c-k-c0x00ffffff-no-rj',
+ 'authorChannelUrl': 'http://www.youtube.com/channel/UCqwHs1ex95RM8_ZZj61JO0w',
+ 'authorChannelId': {'value': 'UCqwHs1ex95RM8_ZZj61JO0w'},
+ 'canRate': True,
+ 'viewerRating': 'none',
+ 'likeCount': 0,
+ 'publishedAt': '2017-05-26T10:53:40Z',
+ 'updatedAt': '2017-05-26T10:53:40Z'}

@@ -1,0 +1,91 @@
+1 ko par commentaire
+tout télécharger ou que télécharger et garder ce qui m'intéresse ?
+environ un commentaire les 1 000 vues
+Amixem 1 972 041 544 vues soit environ 1 972 041 commentaires soit environ 2 Go
+all french youtube videos seems to be under 1 million comments - most commented international video https://www.youtube.com/watch?v=gdZLi9oWNZg
+what if comment thread more than 100 ?
+
+65 commentaires sur ma chaîne YouTube - fake news youtube ne donne pas trop ce genre d'info
+
+if only focus on France it should be ok "can be checked by A propos Pays:"
+
+what happen if answer to not last comment in comment thread ? what is parent id ?
+
+videoId (11)
+
+authorDisplayName (~15)
+
+id (20)
+textOriginal (~100)
+
+authorChannelId (24)
+parentId (20)
+
+or just treat directly because too much data ? could compute at least real global size
+
+treated:
+
+authorChannelId0 - authorChannelId1 N
+authorChannelId1 - authorChannelId0 N'
+
+population française 2019: n = 67.06 millions
+théoriquement en O(n²) en pratique tkt mdr
+
+{'kind': 'youtube#commentThreadListResponse',
+ 'etag': 'CENSORED',
+ 'pageInfo': {'totalResults': 4, 'resultsPerPage': 100},
+ 'items':
+	[{'kind': 'youtube#commentThread',
+	  'etag': 'CENSORED',
+	  'id': 'Ugh70UmoMbIzEXgCoAEC',
+	  'snippet':
+	  {'videoId': 'drOy5akB56w',
+	   'topLevelComment':
+	    {'kind': 'youtube#comment',
+	     'etag': 'CENSORED',
+		 'id': 'Ugh70UmoMbIzEXgCoAEC',
+		 'snippet':
+		 {'videoId': 'drOy5akB56w',
+		 'textDisplay': "mec , j'ai un probleme quand je me co a altis craft sa me mais : a fatal error has occured this connection is terminated",
+		 'textOriginal': "mec , j'ai un probleme quand je me co a altis craft sa me mais : a fatal error has occured this connection is terminated",
+		 'authorDisplayName': 'Invalid User',
+		 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj',
+		 'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg',
+		 'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'},
+		 'canRate': True,
+		 'viewerRating': 'none',
+		 'likeCount': 0,
+		 'publishedAt': '2017-05-27T08:10:27Z',
+		 'updatedAt': '2017-05-27T08:10:27Z'}},
+		 'canReply': True,
+		 'totalReplyCount': 6,
+		 'isPublic': True}, 'replies':
+			{'comments':
+				[{'kind': 'youtube#comment',
+				  'etag': 'CENSORED',
+				  'id': 'Ugh70UmoMbIzEXgCoAEC.8T3AiK6Yo3S8T3R_7IJnD8',
+				  'snippet':
+				  {'videoId': 'drOy5akB56w',
+				  'textDisplay': 'et je te dupli dla tune :p',
+				  'textOriginal': 'et je te dupli dla tune :p',
+				  'parentId': 'Ugh70UmoMbIzEXgCoAEC',
+				  'authorDisplayName': 'Invalid User',
+				  'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj',
+				  'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg',
+				  'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'},
+				  'canRate': True,
+				  'viewerRating': 'none',
+				  'likeCount': 0,
+				  'publishedAt': '2017-05-27T10:37:44Z',
+				  'updatedAt': '2017-05-27T10:37:44Z'}},
+			{'kind': 'youtube#comment',
+				'etag': 'CENSORED', 'id': 'Ugh70UmoMbIzEXgCoAEC.8T3AiK6Yo3S8T3RZ2Cmf9h', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': "Ah\nTu peux m'envoyé un grade sur ton serveur stp ? :p", 'textOriginal': "Ah\nTu peux m'envoyé un grade sur ton serveur stp ? :p", 'parentId': 'Ugh70UmoMbIzEXgCoAEC', 'authorDisplayName': 'Invalid User', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg', 'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-27T10:37:35Z', 'updatedAt': '2017-05-27T10:37:35Z'}}, {'kind': 'youtube#comment', 'etag': 'CENSORED', 'id': 'Ugh70UmoMbIzEXgCoAEC.8T3AiK6Yo3S8T3PLhi0hGP', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': 'Je pourrai', 'textOriginal': 'Je pourrai', 'parentId': 'Ugh70UmoMbIzEXgCoAEC', 'authorDisplayName': 'Benjamin Loison', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLTC7jiFiZ9v0HZcymTcsr_Q-8hwE8-2ik3_YSRo=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCF_UozwQBJY4WHZ7yilYkjA', 'authorChannelId': {'value': 'UCF_UozwQBJY4WHZ7yilYkjA'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-27T10:18:18Z', 'updatedAt': '2017-05-27T10:18:18Z'}}, {'kind': 'youtube#comment', 'etag': 'CENSORED', 'id': 'Ugh70UmoMbIzEXgCoAEC.8T3AiK6Yo3S8T3LlgTD4DX', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': "Enfaite, tu a de l'argent infini sur paypal ducoup toi ?", 'textOriginal': "Enfaite, tu a de l'argent infini sur paypal ducoup toi ?", 'parentId': 'Ugh70UmoMbIzEXgCoAEC', 'authorDisplayName': 'Invalid User', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg', 'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-27T09:47:01Z', 'updatedAt': '2017-05-27T09:47:01Z'}}, {'kind': 'youtube#comment', 'etag': 'CENSORED', 'id': 'Ugh70UmoMbIzEXgCoAEC.8T3AiK6Yo3S8T3LgqeDEIh', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': 'okkkk', 'textOriginal': 'okkkk', 'parentId': 'Ugh70UmoMbIzEXgCoAEC', 'authorDisplayName': 'Invalid User', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLRqGNh1ft4ao4xnKA8DxUMEr23feA5GO6FwS9-1oQ=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCR4AjyL8ol8gnsWc1Y4IqGg', 'authorChannelId': {'value': 'UCR4AjyL8ol8gnsWc1Y4IqGg'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-27T09:46:22Z', 'updatedAt': '2017-05-27T09:46:22Z'}}]}}, {'kind': 'youtube#commentThread', 'etag': 'CENSORED', 'id': 'UggZQVD1og6utHgCoAEC', 'snippet': {'videoId': 'drOy5akB56w', 'topLevelComment': {'kind': 'youtube#comment', 'etag': 'CENSORED', 'id': 'UggZQVD1og6utHgCoAEC', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': 'Bonne vidéo, -> Ts ! DABISOUS', 'textOriginal': 'Bonne vidéo, -> Ts ! DABISOUS', 'authorDisplayName': 'Pserko', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLTBl97cm7N9qYJ-KiB2OwwOSyiQVMezXulLO4O9kg=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCb6GGfx88lV3YRZOGDvnnEg', 'authorChannelId': {'value': 'UCb6GGfx88lV3YRZOGDvnnEg'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-26T13:50:05Z', 'updatedAt': '2017-05-26T13:50:05Z'}}, 'canReply': True, 'totalReplyCount': 0, 'isPublic': True}}, {'kind': 'youtube#commentThread', 'etag': 'CENSORED', 'id': 'UgghYovOznk553gCoAEC', 'snippet': {'videoId': 'drOy5akB56w', 'topLevelComment': {'kind': 'youtube#comment', 'etag': 'CENSORED', 'id': 'UgghYovOznk553gCoAEC', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': 'Toujours la pour toi même si j ai quitté le stafs mes sache que le dabisou est la Signer Arthur Doudou', 'textOriginal': 'Toujours la pour toi même si j ai quitté le stafs mes sache que le dabisou est la Signer Arthur Doudou', 'authorDisplayName': 'ArthurSurYouTube', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLS0hWL_HTKwhuks537Rn46Lo3x-uG-iWVvVtKWAyw=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCqwHs1ex95RM8_ZZj61JO0w', 'authorChannelId': {'value': 'UCqwHs1ex95RM8_ZZj61JO0w'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-26T10:54:58Z', 'updatedAt': '2017-05-26T10:54:58Z'}}, 'canReply': True, 'totalReplyCount': 0, 'isPublic': True}}, {'kind': 'youtube#commentThread', 'etag': 'CENSORED', 'id': 'UgiDhZn3fWLBTXgCoAEC', 'snippet': {'videoId': 'drOy5akB56w', 'topLevelComment': {'kind': 'youtube#comment', 'etag': 'CENSORED', 'id': 'UgiDhZn3fWLBTXgCoAEC', 'snippet': {'videoId': 'drOy5akB56w', 'textDisplay': 'Firt', 'textOriginal': 'Firt', 'authorDisplayName': 'ArthurSurYouTube', 'authorProfileImageUrl': 'https://yt3.ggpht.com/ytc/AKedOLS0hWL_HTKwhuks537Rn46Lo3x-uG-iWVvVtKWAyw=s48-c-k-c0x00ffffff-no-rj', 'authorChannelUrl': 'http://www.youtube.com/channel/UCqwHs1ex95RM8_ZZj61JO0w', 'authorChannelId': {'value': 'UCqwHs1ex95RM8_ZZj61JO0w'}, 'canRate': True, 'viewerRating': 'none', 'likeCount': 0, 'publishedAt': '2017-05-26T10:53:40Z', 'updatedAt': '2017-05-26T10:53:40Z'}}, 'canReply': True, 'totalReplyCount': 0, 'isPublic': True}}]}
+				
+------------
+				
+terminate called after throwing an instance of 'nlohmann::detail::type_error'
+  what():  [json.exception.type_error.302] type must be string, but is null
+Aborted
+
+actuellement 10 000 commentaires à la minute sans multithreading
+

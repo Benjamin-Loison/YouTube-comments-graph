@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns:viz="http:///www.gexf.net/1.1draft/viz" version="1.1" xmlns="http://www.gexf.net/1.1draft">
+<meta lastmodifieddate="2010-03-03+23:44">
+<creator>Gephi 0.7</creator>
+</meta>
+<graph defaultedgetype="undirected" idtype="string" type="static">
+<nodes count="10">
+<node id="0.0" label="UCa_m88y-YP42wOdoYaIk6og"/>
+<node id="1.0" label="UC--dxzu8ZRuy7-iN_qzoGuA"/>
+<node id="2.0" label="UC-04oxxj-sv-bpaYUN3v_Zw"/>
+<node id="3.0" label="UC-0DIXScd5txQvmeKx1l3pA"/>
+<node id="4.0" label="UC-0EStxHSsLoUvP9USWGPuA"/>
+<node id="5.0" label="UC-0Z0g0C1Hn0G0tNm0GC-dA"/>
+<node id="6.0" label="UC-0kOgSGMRTMCBNA21mNRlQ"/>
+<node id="7.0" label="UCz9Z3WPp0pu_JjTbUfvkqTQ"/>
+<node id="8.0" label="UC-0p4XZGOz8q_HQmsHz-U2w"/>
+<node id="9.0" label="UC-1ITZfBUlyRJZgp5XtueaA"/>
+<node id="10.0" label="UC-1_edAmtKYNswsfCpD3uIw"/>
+</nodes>
+<edges count="10">
+<edge id="0" source="1.0" target="0.0"/>
+<edge id="1" source="2.0" target="0.0"/>
+<edge id="2" source="3.0" target="0.0"/>
+<edge id="3" source="4.0" target="0.0"/>
+<edge id="4" source="5.0" target="0.0"/>
+<edge id="5" source="6.0" target="0.0" weight="2.0"/>
+<edge id="6" source="6.0" target="7.0" weight="2.0"/>
+<edge id="7" source="8.0" target="0.0"/>
+<edge id="8" source="9.0" target="0.0"/>
+<edge id="9" source="10.0" target="0.0"/>
+</edges>
+</graph>
+</gexf>
