@@ -9,6 +9,16 @@ TODO: discovery mode (make a depth/breadth-first search from a given set of chan
 This discovery mode isn't planned to be coded because no particular aim it would fulfill.
 
 Furthermore YouTube Data API v3 was a real headache because of many YouTube end bugs.
+
+Here is a few screens of some graphs generated:
+
+![alt text](https://raw.githubusercontent.com/Benjamin-Loison/YouTube-comments-graph/main/CPP/graphviz/low.jpg)
+![alt text](https://raw.githubusercontent.com/Benjamin-Loison/YouTube-comments-graph/main/CPP/graphviz/lowSF.jpg)
+![alt text](https://raw.githubusercontent.com/Benjamin-Loison/YouTube-comments-graph/main/CPP/graphviz/lowC.jpg)
+![alt text](https://raw.githubusercontent.com/Benjamin-Loison/YouTube-comments-graph/main/CPP/graphviz/lowT.jpg)
+
+
+
 <!--Furthermore YouTube Data API v3 was a real headache because of many bugs like:
 - using Search: list we can't recover more than ~600 results (channels/videos)
 - too many YouTube end bugs that aren't particularly interesting to notice to users
