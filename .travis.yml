@@ -1,0 +1,8 @@
+language: cpp
+dist: bionic
+compiler:
+- g++
+os:
+- linux
+script:
+- cd CPP/ && g++ main.cpp -o main
