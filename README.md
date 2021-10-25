@@ -1,4 +1,6 @@
 # YouTube-comments-graph
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Benjamin-Loison/YouTube-comments-graph?branch=main&svg=true)](https://ci.appveyor.com/project/Benjamin_Loison/YouTube-comments-graph)
+
 This repository focus on retrieving all comments that are on all French YouTube videos channels
 
 The project currently only manage retrieving, in a multithreaded way (a thread per channel), comments from given YouTube videos channels.
