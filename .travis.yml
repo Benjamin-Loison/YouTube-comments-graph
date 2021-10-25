@@ -6,5 +6,5 @@ compiler:
 os:
 - linux
 script:
-- cd /usr/include/ && wget https://github.com/nlohmann/json/releases/download/v3.10.4/json.hpp
+- cd /usr/include/ && sudo wget https://github.com/nlohmann/json/releases/download/v3.10.4/json.hpp
 - cd CPP/ && g++ main.cpp -lpthread -lcurl -o main
