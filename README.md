@@ -1,4 +1,4 @@
-# YouTube-comments-graph
+# YouTube comments graph
 [![Travis Build Status](https://travis-ci.com/Benjamin-Loison/YouTube-comments-graph.svg?branch=main)](https://app.travis-ci.com/Benjamin-Loison/YouTube-comments-graph)
 
 This repository focus on retrieving all comments that are on all French YouTube videos channels
