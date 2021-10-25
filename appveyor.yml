@@ -1,0 +1,6 @@
+images:
+  - Visual Studio 2017
+clone_folder: c:\projects\source
+build_script:
+  - cmd: >-
+    ls
