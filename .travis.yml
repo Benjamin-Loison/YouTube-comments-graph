@@ -1,10 +1,9 @@
 language: cpp
-sudo: required
 dist: bionic
 compiler:
 - g++
 os:
 - linux
 script:
-- sudo wget https://github.com/nlohmann/json/releases/download/v3.10.4/json.hpp -P /usr/include/
-- cd CPP/ && g++ main.cpp -lpthread -lcurl -o main
+- mkdir include/ && wget https://github.com/nlohmann/json/releases/download/v3.10.4/json.hpp -P include/
+- g++ CPP/main.cpp -lpthread -lcurl -I include/ -o CPP/main
