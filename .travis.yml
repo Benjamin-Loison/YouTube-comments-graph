@@ -1,5 +1,5 @@
 language: cpp
-dist: impish
+dist: focal
 compiler:
 - g++
 os:
