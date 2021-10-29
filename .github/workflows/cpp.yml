@@ -11,4 +11,4 @@ jobs:
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
-      - run: cd CPP/ && g++ main.cpp -o main
+      - run: g++ CPP/main.cpp -o CPP/main
