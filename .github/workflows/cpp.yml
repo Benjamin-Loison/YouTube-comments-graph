@@ -11,4 +11,6 @@ jobs:
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v2
-      - run: g++ CPP/main.cpp -o CPP/main
+      - run: mkdir include/
+      - run: wget https://github.com/nlohmann/json/releases/download/v3.10.4/json.hpp -P include/
+      - run: g++ CPP/main.cpp -lpthread -lcurl -I include/ -o CPP/main
