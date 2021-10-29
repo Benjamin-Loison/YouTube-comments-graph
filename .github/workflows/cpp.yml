@@ -1,5 +1,4 @@
-name: C++ CI
-
+name: Mac
 on:
   push:
     branches: [ main ]
