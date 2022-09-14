@@ -20,7 +20,7 @@ Here is a few screens of some graphs generated:
 ![alt text](https://raw.githubusercontent.com/Benjamin-Loison/YouTube-comments-graph/main/CPP/graphviz/lowC.jpg)
 ![alt text](https://raw.githubusercontent.com/Benjamin-Loison/YouTube-comments-graph/main/CPP/graphviz/lowT.jpg)
 
-
+Note that you can share easily to anyone a reference to a comment on a video by using an URL like https://www.youtube.com/watch?v=dvecqwfU6xw&lc=Ugxw_nsUNUor9AUEBGp4AaABAg.9fDfvkgiqtW9fDkE2r6Blm (this link can also be obtained from the YouTube UI by right-clicking "... ago"). By doing so the comment will be pinned.
 
 <!--Furthermore YouTube Data API v3 was a real headache because of many bugs like:
 - using Search: list we can't recover more than ~600 results (channels/videos)
