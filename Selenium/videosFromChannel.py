@@ -16,7 +16,7 @@ euronewsInFrench = 'UCW2QcKZiU8aUGg4yxCIditg'
 youtuberId = FranceInter
 binary = 'C:\\Users\\Benjamin\\Desktop\\BensFolder\\DEV\\Python\\Libs\\geckodriver-v0.28.0-win64\\geckodriver.exe'
 profile = webdriver.FirefoxProfile()
-profile.set_preference('permissions.default.image', 2) # to disable loading images with is quite heavy
+profile.set_preference('permissions.default.image', 2) # to disable loading images which is quite heavy
 if isLinux:
     driver = webdriver.Firefox(firefox_profile=profile)
 else:
