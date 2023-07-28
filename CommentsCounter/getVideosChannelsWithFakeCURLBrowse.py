@@ -10,10 +10,10 @@ os.chdir(path)
 
 def log(s):
     now = datetime.now()
-    print(now.strftime("%H:%M:%S"), s)
+    print(now.strftime('%H:%M:%S'), s)
 
 def getURL(url):
-    res = ""
+    res = ''
     try:
         res = urllib.request.urlopen(url).read()
     except HTTPError as e:
@@ -22,7 +22,7 @@ def getURL(url):
     return res.decode('utf-8')
 
 def exec(cmd):
-    return subprocess.check_output(cmd, shell = True).decode('utf-8')
+    return subprocess.check_output(cmd).decode('utf-8')
 
 BenjaminLoisonSecondary = 'UCt5USYpzzMCYhkirVQGHwKQ'
 BenjaminLoison = 'UCF_UozwQBJY4WHZ7yilYkjA'
@@ -44,9 +44,7 @@ def retrieveVideosFromContent(content):
     #    contentParts = content.split('"videoId": "')
     #else:
     contentParts = content.split(wantedPattern)
-    contentPartsLen = len(contentParts)
-    for contentPartsIndex in range(contentPartsLen):
-        contentPart = contentParts[contentPartsIndex]
+    for contentPart in contentParts:
         contentPartParts = contentPart.split('"')
         videoId = contentPartParts[0]
         videoIdLen = len(videoId)
@@ -55,18 +53,18 @@ def retrieveVideosFromContent(content):
 
 def scrap(token):
     global errorsCount, data # for debugging
-    cmd = 'curl -s \'https://www.youtube.com/youtubei/v1/browse?key=YOUR_API_KEY\' -H \'Content-Type: application/json\' --data-raw \'{"context":{"client":{"clientName":"WEB","clientVersion":"CENSORED"}},"continuation":"' + token + '"}\''
+    cmd = ['curl', '-s', 'https://www.youtube.com/youtubei/v1/browse?key=YOUR_API_KEY', '-H', 'Content-Type: application/json', '--data-raw', '{"context":{"client":{"clientName":"WEB","clientVersion":"CENSORED"}},"continuation":"' + token + '"}']
     cmd = cmd.replace('"', '\\"').replace("\'", '"')
     beginTime = time.time()
     content = exec(cmd)
     endTime = time.time()
-    log('request took ' + str(endTime - beginTime) + ' s')
+    log(f'request took {endTime - beginTime} s')
     # not always 30 videos per answer (not talking about the last) - France24
 
     beginTime = time.time()
     retrieveVideosFromContent(content)
     endTime = time.time()
-    log('retrieving videos took ' + str(endTime - beginTime) + ' s')
+    log(f'retrieving videos took {endTime - beginTime} s')
 
     data = json.loads(content)
     if not 'onResponseReceivedActions' in data:
@@ -80,9 +78,9 @@ def scrap(token):
     # in common: [-1]['continuationItemRenderer']['continuationEndpoint']['continuationCommand']['token']
     return newToken
 
-url = 'https://www.youtube.com/channel/' + youtuberId + '/videos'
+url = f'https://www.youtube.com/channel/{youtuberId}/videos'
 content = getURL(url)
-content = content.split('var ytInitialData = ')[1].split(";</script>")[0]
+content = content.split('var ytInitialData = ')[1].split(';</script>')[0]
 dataFirst = json.loads(content)
 
 retrieveVideosFromContent(content)
@@ -91,19 +89,18 @@ token = dataFirst['contents']['twoColumnBrowseResultsRenderer']['tabs'][1]['tabR
 
 while True:
     videosIdsLen = len(videosIds)
-    log(str(videosIdsLen) + " " + token)#, videosIds)
+    log(f'{videosIdsLen} {token}')#, videosIds)
     if token == '':
         break
     newToken = scrap(token)
     token = newToken
 
 # 2 videos difference ("late" in comparison with SocialBlade)
-f = open('videos/' + youtuberId + '.txt', 'w')
-for videosIdsIndex in range(videosIdsLen):
-    videoId = videosIds[videosIdsIndex]
-    f.write(videoId)
-    if videosIdsIndex != videosIdsLen - 1:
-        f.write("\n")
-f.close()
+with open(f'videos/{youtuberId}.txt', 'w') as f:
+    for videosIdsIndex in range(videosIdsLen):
+        videoId = videosIds[videosIdsIndex]
+        f.write(videoId)
+        if videosIdsIndex != videosIdsLen - 1:
+            f.write("\n")
 
 # errorsCount: 42 for euronewsInFrench

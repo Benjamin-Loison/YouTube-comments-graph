@@ -119,7 +119,7 @@ def workChannel(youtuberId):
         #print(uploadsPlaylist)
         cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
         s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-        idsStr = str(s.stdout.read())[2:-3]
+        idsStr = s.stdout.read().decode('utf-8')
         #print(subprocess_return)
         ids = idsStr.split("\\n")
         idsLen = len(ids)

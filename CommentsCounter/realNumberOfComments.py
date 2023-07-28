@@ -57,7 +57,7 @@ def getURL(url):
     return content
 
 def exec(cmd):
-    return subprocess.check_output(cmd, shell=True)
+    return subprocess.check_output(cmd, shell=True).decode('utf-8')
 
 def log(s, endLog = "\n"):
     print(s, end  = endLog)
@@ -73,8 +73,7 @@ def checkYoutuber(youtuberId):
     uploadsPlaylist = data['items'][0]['contentDetails']['relatedPlaylists']['uploads']
     #print(uploadsPlaylist)
     cmd = f'youtube-dl -j --flat-playlist "https://www.youtube.com/playlist?list={uploadsPlaylist}" | jq -r ".id"'
-    res = exec(cmd)
-    idsStr = str(res)[2:-3]
+    idsStr = exec(cmd)
     slices = []
     if True:#idsStr != '': # otherwise problem of TheVoiceFR and should treat this case in a cleaner manner to have real comments number
         #print(idsStr)
