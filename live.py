@@ -2,14 +2,16 @@
 
 # copied from main
 
-import apiclient, requests, subprocess, os
+import apiclient
+import requests
+import subprocess
+import os
+import shlex
 #from datetime import date
 from datetime import datetime
 
 #could use a set of keys
-#KEY = "YOUR_API_KEY"
-#KEY = "YOUR_API_KEY"
-KEY = 'KEY'#"YOUR_API_KEY"
+KEY = 'KEY'
 separator = '|SEPARATOR|'
 
 # every key was checked using https://youtube.googleapis.com/youtube/v3/channels?id=UCWeg2Pkate69NFdBeuRFTAw&key=KEY
@@ -99,17 +101,17 @@ def scrape(youtuberId, comments, video_id, token=None):
     try:
         if token:
             results = youtube.commentThreads().list(
-                part="snippet,replies",
+                part='snippet,replies',
                 videoId=video_id,
                 pageToken=token,
-                textFormat="plainText",
+                textFormat='plainText',
                 maxResults=100
             ).execute()
         else:
             results = youtube.commentThreads().list(
-                part="snippet,replies",
+                part='snippet,replies',
                 videoId=video_id,
-                textFormat="plainText",
+                textFormat='plainText',
                 maxResults=100
             ).execute()
     except:
@@ -146,8 +148,8 @@ def workVideo(youtuberId, videoId):
             #key, channel = parts
             keyName = names[src]
             channelName = names[dest]
-            #f.write(f"{key} {channel} {intensity}\n")
-            f.write(f"{keyName} {separator} {channelName} {separator} {intensity}\n")
+            #f.write(f'{key} {channel} {intensity}\n')
+            f.write(f'{keyName} {separator} {channelName} {separator} {intensity}\n')
 
 #workVideo('gdZLi9oWNZg')#'_ZPpU7774DQ')
 
@@ -185,11 +187,10 @@ def workChannel(youtuberId):
         item = getItem(url)
         uploadsPlaylist = item['contentDetails']['relatedPlaylists']['uploads']
         #log(uploadsPlaylist)
-        cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
-        s = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-        idsStr = str(s.stdout.read())[2:-3]
+        cmd = f'youtube-dl -j --flat-playlist {shlex.quote(f"https://www.youtube.com/playlist?list={uploadsPlaylist}")} | jq -r .id'
+        idsStr = subprocess.check_output(cmd).decode('utf-8')
         #log(subprocess_return)
-        ids = idsStr.split("\\n")
+        ids = idsStr.split('\\n')
         idsLen = len(ids)
         #log(idsLen)
         for idsIndex in range(idsLen):
