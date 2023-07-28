@@ -26,7 +26,7 @@ def changeKey():
     if keyIndex >= len(KEYS):
         log('all keys exhausted')
         exit(42)
-    log('key ' + str(keyIndex) + ' consumed increasing !')
+    log(f'key {keyIndex} consumed increasing!')
     keyIndex += 1
     REAL_KEY = KEYS[keyIndex]
     youtube = apiclient.discovery.build('youtube', 'v3', developerKey=REAL_KEY)
@@ -43,9 +43,8 @@ def log(s):
     now = datetime.now().strftime('%d/%m/%Y %H:%M:%S.%f')
     s = now + ': ' + s
     print(s)
-    fLogs = open(logsFile, 'a')
-    fLogs.write(s + "\n")
-    fLogs.close()
+    with open(logsFile, 'a') as fLogs:
+        fLogs.write(s + "\n")
 
 def debug(s):
     if True:
@@ -137,19 +136,18 @@ def workVideo(youtuberId, videoId):
     names[youtuberId] = 'SQUEEZIE'; # TODO: auto
     #names[youtuberId] = 'HYBE LABELS';
     #separator = '|'
-    f = open('videos/' + videoId + '.txt', 'w')
-    for realKey in relations:
-        intensity = relations[realKey]
-        #log('realKey: ' + realKey + ' !');
-        parts = realKey.split(separator)
-        #log(parts);
-        src, dest = parts
-        #key, channel = parts
-        keyName = names[src]
-        channelName = names[dest]
-        #f.write(key + ' ' + channel + ' ' + str(intensity) + "\n")
-        f.write(keyName + separator + channelName + separator + str(intensity) + "\n")
-    f.close()
+    with open('videos/' + videoId + '.txt', 'w') as f:
+        for realKey in relations:
+            intensity = relations[realKey]
+            #log('realKey: ' + realKey + ' !');
+            parts = realKey.split(separator)
+            #log(parts);
+            src, dest = parts
+            #key, channel = parts
+            keyName = names[src]
+            channelName = names[dest]
+            #f.write(f"{key} {channel} {intensity}\n")
+            f.write(f"{keyName} {separator} {channelName} {separator} {intensity}\n")
 
 #workVideo('gdZLi9oWNZg')#'_ZPpU7774DQ')
 
@@ -173,21 +171,21 @@ def getURL(url):
 def isFrench(youtuberId): # approved
     global costConsumed
     costConsumed += 1
-    url = 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=' + youtuberId + '&key=' + KEY
+    url = f'https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={youtuberId}&key={KEY}'
     content = getURL(url)
     return '"country": "FR"' in content
 
 def workChannel(youtuberId):
-    #url = 'https://www.googleapis.com/youtube/v3/search?key=' + KEY + '&channelId=' + youtuberId + '&part=snippet,id&order=date&maxResults=50' # used to be 20
-    #log('isFrench' + str(isFrench(youtuberId)))
+    #url = f'https://www.googleapis.com/youtube/v3/search?key={KEY}&channelId={youtuberId}&part=snippet,id&order=date&maxResults=50' # used to be 20
+    #log(f'isFrench {isFrench(youtuberId)})
     global costConsumed
     if isFrench(youtuberId):
         costConsumed += 1
-        url = 'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id=' + youtuberId + '&key=' + KEY # could merge request or make a cache with isFrench because can ask both for cost 1
+        url = f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}' # could merge request or make a cache with isFrench because can ask both for cost 1
         content = getURL(url)
         uploadsPlaylist = content.split('"uploads": "')[1].split('"')[0]
         #log(uploadsPlaylist)
-        cmd = "youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list=" + uploadsPlaylist + "\" | jq -r '.id'"
+        cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
         s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         idsStr = str(s.stdout.read())[2:-3]
         #log(subprocess_return)
