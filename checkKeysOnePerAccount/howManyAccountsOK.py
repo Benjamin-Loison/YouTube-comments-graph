@@ -5,7 +5,7 @@ from urllib.error import HTTPError
 # 07/09/21
 # furthermore the 0 quota bug seems also to happen when you respect the ToS by just making a single project
 
-path = "C:\\Users\\Benjamin\\Desktop\\BensFolder\\DEV\\Candco\\CPP\\Projects\\YouTubeCommentsGraph\\checkKeysOnePerAccount\\"
+path = 'C:\\Users\\Benjamin\\Desktop\\BensFolder\\DEV\\Candco\\CPP\\Projects\\YouTubeCommentsGraph\\checkKeysOnePerAccount\\'
 
 os.chdir(path)
 
@@ -33,7 +33,7 @@ for accountsIndex in range(accountsLen):
     accounts[accountsIndex] = account
 
 def getURL(url):
-    res = ""
+    res = ''
     try:
         res = urllib.request.urlopen(url).read()
     except HTTPError as e:
@@ -45,32 +45,32 @@ free, exhausted = 0, 0
 keysLinesLen = len(keysLines)
 for linesIndex in range(keysLinesLen):
     line = keysLines[linesIndex]
-    #if accounts[linesIndex] != "YOUR_EMAIL":
+    #if accounts[linesIndex] != 'YOUR_EMAIL':
     #    continue
     if line[-1] == '\n':
         line = line[:-1]
-    #if line != "YOUR_API_KEY":
+    #if line != 'YOUR_API_KEY':
     #    continue
-    url = "https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCzYC9ss2P77Ry2LzIDL5Xsw&key=" + line
-    print(line, end = "")
+    url = 'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id=UCzYC9ss2P77Ry2LzIDL5Xsw&key=' + line
+    print(line, end = '')
     #try:
     content = getURL(url)
-    if "UUzYC9ss2P77Ry2LzIDL5Xsw" in str(content):
-        print(" X")
+    if 'UUzYC9ss2P77Ry2LzIDL5Xsw' in str(content):
+        print(' X')
         free += 1
-    elif "YouTube Data API v3 has not been used in project" in str(content):
-        print(" @")
-    elif "quota" in str(content):
-        print(" $")
+    elif 'YouTube Data API v3 has not been used in project' in str(content):
+        print(' @')
+    elif 'quota' in str(content):
+        print(' $')
         exhausted += 1
-    elif "suspended" in str(content):
-        #print(" SUSPENDED - " + line + " " + accounts[linesIndex])
+    elif 'suspended' in str(content):
+        #print(f' SUSPENDED - {line} {accounts[linesIndex]}')
         removed += [[linesIndex, line, accounts[linesIndex]]]
-        print(" " + accounts[linesIndex])
+        print(' ' + accounts[linesIndex])
     else:
-        print(" ERROR " + str(content))
+        print(' ERROR ' + str(content))
     #except:
-    #    print(" ERROR: " + line)
+    #    print(' ERROR: ' + line)
 
 removedLen = len(removed)
 print(free, exhausted, free + exhausted, keysLinesLen, removedLen)
@@ -78,16 +78,15 @@ print(free, exhausted, free + exhausted, keysLinesLen, removedLen)
 # it seems that after using this need to use dos2unix to work correctly in my huge cpp program weird
 def write(fileName, lines):
     linesLen = len(lines)
-    f = open(fileName, 'w')
-    for linesIndex in range(linesLen):
-        line = lines[linesIndex]
-        if line[-1] == '\n':
-            line = line[:-1]
-        f.write(line)
-        if linesIndex < linesLen - 1:
-            f.write('\n')
-    f.close()
-    callProcess = subprocess.Popen(['dos2unix', fileName]) # also working on Windows
+    with open(fileName, 'w') as f:
+        for linesIndex in range(linesLen):
+            line = lines[linesIndex]
+            if line[-1] == '\n':
+                line = line[:-1]
+            f.write(line)
+            if linesIndex < linesLen - 1:
+                f.write('\n')
+    subprocess.check_call(['dos2unix', fileName]) # also working on Windows
 
 if removedLen > 0:
     if True:
@@ -95,23 +94,21 @@ if removedLen > 0:
             removedEl = removed[removedIndex]
             print(removedEl)
             linesIndex, key, account = removedEl
-    f = open(commonPath + 'removedBecauseSuspended.txt', 'a')
-    for removedIndex in range(removedLen - 1, -1, -1):
-        removedEl = removed[removedIndex]
-        linesIndex, key, account = removedEl
-        keysLines = keysLines[:linesIndex] + keysLines[linesIndex + 1:]
-        accounts = accounts[:linesIndex] + accounts[linesIndex + 1:]
-        f.write('\n' + key + ' ' + account)
-    f.close()
+    with open(commonPath + 'removedBecauseSuspended.txt', 'a') as f:
+        for removedIndex in range(removedLen - 1, -1, -1):
+            removedEl = removed[removedIndex]
+            linesIndex, key, account = removedEl
+            keysLines = keysLines[:linesIndex] + keysLines[linesIndex + 1:]
+            accounts = accounts[:linesIndex] + accounts[linesIndex + 1:]
+            f.write('\n' + key + ' ' + account)
     write(keysFile, keysLines)
     write(accountsFile, accounts)
 
 ## unique lines
 
 def read(fileName):
-    f = open(fileName)
-    lines = f.readlines()
-    f.close()
+    with open(fileName) as f:
+        lines = f.readlines()
     return lines
 
 def numberOfUniqueLines(fileName):
