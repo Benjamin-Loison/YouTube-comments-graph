@@ -87,7 +87,7 @@ def write(fileName, lines):
         if linesIndex < linesLen - 1:
             f.write("\n")
     f.close()
-    callProcess = subprocess.Popen(['dos2unix', fileName], shell = True) # also working on Windows
+    callProcess = subprocess.Popen(['dos2unix', fileName]) # also working on Windows
 
 if removedLen > 0:
     if True:
