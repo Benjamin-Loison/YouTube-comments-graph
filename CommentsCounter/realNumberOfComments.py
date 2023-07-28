@@ -20,9 +20,7 @@ keys = []
 
 with open('../CPP/keys.txt') as f:
     lines = f.readlines()
-linesLen = len(lines)
-for linesIndex in range(linesLen):
-    line = lines[linesIndex]
+for line in lines:
     if line[-1] == "\n":
         line = line[:-1]
     keys += [line]
@@ -42,23 +40,21 @@ def getURL(url):
     url = reversedURL[::-1] # otherwise have a bug on this video :'( https://www.youtube.com/watch?v=6g6aUTQdKEY
 
     #print(url)
-    #r = requests.get(url)
-    f = requests.get(url)
-    content = f.text
+    data = requests.get(url).json()
+    content = json.dumps(data, indent = 4)
     #print(content)
     if 'The request cannot be completed because you have exceeded your ' in content:
         if keysIndex >= keysLen: # warning looping continously if no available key
             keysIndex = 0
         else:
             keysIndex += 1
-        log('new key index: ' + str(keysIndex))
+        log(f'new key index: {keysIndex}')
         #print(keysIndex)
         REAL_KEY = keys[keysIndex]
 
         return getURL(originURL)
     #print('error for: ' + url)
-    #content = r.text
-    return content
+    return data
 
 def exec(cmd):
     return subprocess.check_output(cmd, shell=True).decode('utf-8')
@@ -71,8 +67,7 @@ def log(s, endLog = "\n"):
 #f = open('log.txt', 'w')
 
 def checkYoutuber(youtuberId):
-    content = getURL(f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}')
-    data = json.loads(content)
+    data = getURL(f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}')
     #print(data)
     uploadsPlaylist = data['items'][0]['contentDetails']['relatedPlaylists']['uploads']
     #print(uploadsPlaylist)
@@ -89,17 +84,14 @@ def checkYoutuber(youtuberId):
             ids = []
             with open(f'videos/{youtuberId}.txt') as f:
                 lines = f.readlines()
-            linesLen = len(lines)
-            idsLen = linesLen
-            for linesIndex in range(linesLen):
-                line = lines[linesIndex]
+            idsLen = len(lines)
+            for line in lines:
                 if line[-1] == "\n":
                     line = line[:-1]
                 ids += [line]
-            print('new idsLen: ' + str(idsLen))
+            print(f'new idsLen: {idsLen}')
         slice = []
-        for idsIndex in range(idsLen):
-            id = ids[idsIndex]
+        for id in ids:
             if len(slice) == 50:
                 slices += [slice]
                 slice = []
@@ -121,16 +113,15 @@ def checkYoutuber(youtuberId):
         idsLen = len(ids)
         #print(str(slicesIndex) + ' / ' + str(slicesLen) + ' - ' + str(totalComments))
         url = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + ','.join(ids) + '&key=' + KEY
-        content = getURL(url)
-        data = json.loads(content)
+        data = getURL(url)
         commentsNumbers = []
         items = data['items']
         itemsLen = len(items)
         if idsLen != itemsLen:
-            log(str(slicesIndex) + ' / ' + str(slicesLen))
-            log(str(itemsLen) + ' / ' + str(idsLen))
+            log(f'{slicesIndex} / {slicesLen}')
+            log(f'{itemsLen} / {idsLen}')
             log(url)
-            log(content)
+            log(json.dumps(data, indent = 4))
         for item in items:
             statistics = item['statistics']
             if 'commentCount' in statistics:
@@ -150,15 +141,15 @@ def checkYoutuber(youtuberId):
             #print(id + ' ' + str(idsIndex) + ' / ' + str(idsLen))
 
             commentsEnabled = False
-            url = 'https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=' + id + '&key=' + KEY
+            url = f'https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId={id}&key=' + KEY
             #print(url)
-            content = getURL(url)
+            data = getURL(url)
+            content = json.dumps(data, indent = 4)
             if ' parameter has disabled comments.' in content:
                 log('comments really disabled ' + id)
                 continue
-            data = json.loads(content)
             if not 'items' in data:
-                #print('no data for: ' + url + ' content: ' + content)
+                #print(f'no data for: {url} content: {content}')
                 continue
             items = data['items']
             itemsLen = len(items)

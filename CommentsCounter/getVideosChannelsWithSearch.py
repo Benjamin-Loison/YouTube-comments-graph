@@ -1,4 +1,4 @@
-import os, requests, json
+import os, requests
 
 path = "C:\\Users\\Benjamin\\Desktop\\BensFolder\\DEV\\Candco\\CPP\\Projects\\YouTubeCommentsGraph\\CommentsCounter\\"
 
@@ -16,12 +16,9 @@ keysIndex = 0
 keys = []
 maxResults = 50
 
-f = open('..\\CPP\\keys.txt')
-lines = f.readlines()
-f.close()
-linesLen = len(lines)
-for linesIndex in range(linesLen):
-    line = lines[linesIndex]
+with open('..\\CPP\\keys.txt') as f:
+    lines = f.readlines()
+for line in lines:
     if line[-1] == "\n":
         line = line[:-1]
     keys += [line]
@@ -35,18 +32,17 @@ def getURL(url):
     url = url.replace('&key=' + KEY, '&key=' + REAL_KEY)
 
     print(url)
-    f = requests.get(url)
-    content = f.text
-    if "The request cannot be completed because you have exceeded your " in content:
+    data = requests.get(url).json()
+    if 'The request cannot be completed because you have exceeded your ' in content:
         if keysIndex >= keysLen:
             keysIndex = 0
         else:
             keysIndex += 1
-        print("new key index: " + str(keysIndex))
+        print('new key index: ' + str(keysIndex))
         REAL_KEY = keys[keysIndex]
 
         return getURL(originURL)
-    return content
+    return data
 
 videosIds, playlistsIds, videosTitles = [], [], []
 callsIndex = 0
@@ -56,14 +52,13 @@ def scrap(pageToken = '', publishedBefore = ''):
     global callsIndex, videosIds, playlistsIds, totalResults, videosTitles
     if callsIndex == 30:
         return
-    url = 'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=' + youtuberId + '&maxResults=' + str(maxResults) + '&type=video&order=date&key=' + KEY # doesn't seem to respect an order type that we could force by default - my smart idea of using order and publishedBefore doesn't work: https://issuetracker.google.com/issues/128673552
+    url = f'https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={youtuberId}&maxResults={maxResults}&type=video&order=date&key={KEY}' # doesn't seem to respect an order type that we could force by default - my smart idea of using order and publishedBefore doesn't work: https://issuetracker.google.com/issues/128673552
     if pageToken != '':
         url += '&pageToken=' + pageToken
     if publishedBefore != '':
         url += '&publishedBefore=' + publishedBefore
-    content = getURL(url)
+    data = getURL(url)
     callsIndex += 1
-    data = json.loads(content)
     if totalResults == 0:
         totalResults = data['pageInfo']['totalResults']
 
@@ -94,11 +89,10 @@ def scrap(pageToken = '', publishedBefore = ''):
                 videosIds += [videoId]
             #if not videoTitle in videosTitles: # otherwise might have videos with same title
                 videosTitles += [videoTitle]
-                f = open('videos/' + youtuberId + '.txt', 'a', encoding = 'utf-8')
-                publishedAt = snippet['publishedAt']
-                f.write(videoId + ' ' + publishedAt + ' ' + videoTitle + "\n")
-                f.close()
-                print(videoId + ' ' + publishedAt + ' ' + videoTitle)
+                with open(f'videos/{youtuberId}.txt', 'a', encoding = 'utf-8') as f:
+                    publishedAt = snippet['publishedAt']
+                    f.write(f"{videoId} {publishedAt} {videoTitle}\n")
+                print(f'{videoId} {publishedAt} {videoTitle}')
         elif kind == 'playlist':
             playlistId = id['playlistId']
             playlistsIds += [playlistId]
@@ -121,7 +115,6 @@ playlistsIdsLen = len(playlistsIds)
 #print(playlistsIdsLen, uniquePlaylistsIdsLen)
 print(playlistsIdsLen)
 
-f = open('videos/' + youtuberId + '.txt', 'w')
-
-f.close()
+with open('videos/{youtuberId}.txt', 'w') as f:
+    pass
 

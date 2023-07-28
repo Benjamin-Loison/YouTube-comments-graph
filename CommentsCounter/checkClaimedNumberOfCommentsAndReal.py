@@ -8,25 +8,22 @@ REAL_KEY = 'YOUR_API_KEY'
 def getURL(url):
     url = url.replace(KEY, REAL_KEY)
     #print(url)
-    f = requests.get(url)
-    content = f.text
-    return content
+    data = requests.get(url).json()
+    return data
 
-url = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + videoId + '&key=' + KEY
-content = getURL(url)
-data = json.loads(content)
+url = f'https://www.googleapis.com/youtube/v3/videos?part=statistics&id={videoId}&key={KEY}'
+data = getURL(url)
 claimedCommentsNumber = int(data['items'][0]['statistics']['commentCount'])
-print('claimedCommentsNumber: ' + str(claimedCommentsNumber)) # same on YouTube graphically on a recent video
+print(f'claimedCommentsNumber: {claimedCommentsNumber}') # same on YouTube graphically on a recent video
 
 realCommentsNumber = 0
 
 def countComments(commentId, pageToken = ''):
     global realCommentsNumber
-    url = 'https://www.googleapis.com/youtube/v3/comments?part=snippet&parentId=' + commentId + '&maxResults=100&key=' + KEY
+    url = f'https://www.googleapis.com/youtube/v3/comments?part=snippet&parentId={commentId}&maxResults=100&key={KEY}'
     if pageToken != '':
         url += '&pageToken=' + pageToken
-    content = getURL(url)
-    data = json.loads(content)
+    data = getURL(url)
     nextPageToken = data['nextPageToken'] if 'nextPageToken' in data else pageToken
     items = data['items']
     itemsLen = len(items)
@@ -36,11 +33,10 @@ def countComments(commentId, pageToken = ''):
 
 def scrape(pageToken = ''):
     global realCommentsNumber
-    url = 'https://www.googleapis.com/youtube/v3/commentThreads?part=replies,snippet&videoId=' + videoId + '&maxResults=100&key=' + KEY
+    url = f'https://www.googleapis.com/youtube/v3/commentThreads?part=replies,snippet&videoId={videoId}&maxResults=100&key={KEY}'
     if pageToken != '':
         url += '&pageToken=' + pageToken
-    content = getURL(url)
-    data = json.loads(content)
+    data = getURL(url)
     nextPageToken = data['nextPageToken'] if 'nextPageToken' in data else pageToken
     items = data['items']
     for item in items:
@@ -55,5 +51,5 @@ def scrape(pageToken = ''):
 
 scrape()
 
-print('realCommentsNumber: ' + str(realCommentsNumber))
+print(f'realCommentsNumber: {realCommentsNumber}')
 

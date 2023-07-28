@@ -7,7 +7,7 @@ os.chdir(path)
 
 # https://youtube.googleapis.com/youtube/v3/videos?part=statistics&id=bx613OLEn_Q&key=YOUR_API_KEY
 
-youtuberId = 'UCgvqvBoSHB1ctlyyhoHrGwQ'#'UCpWaR3gNAQGsX48cIlQC0qw'#"UC-GI5LST5T3Gw93yZxjdFaw"#"UCLMKLU-ZuDQIsbjMvR3bbog"#"UCWeg2Pkate69NFdBeuRFTAw"#"UCgvqvBoSHB1ctlyyhoHrGwQ"#"UCWeg2Pkate69NFdBeuRFTAw"
+youtuberId = 'UCgvqvBoSHB1ctlyyhoHrGwQ'#'UCpWaR3gNAQGsX48cIlQC0qw'#'UC-GI5LST5T3Gw93yZxjdFaw'#'UCLMKLU-ZuDQIsbjMvR3bbog'#'UCWeg2Pkate69NFdBeuRFTAw'#'UCgvqvBoSHB1ctlyyhoHrGwQ'#'UCWeg2Pkate69NFdBeuRFTAw'
 
 channelsCommentsCounter = 0
 videosCommentsCounter = 0
@@ -19,18 +19,17 @@ linesIndex = 0
 
 # this good method (for memory seems to take a very long time to run after a few millions lines) let's go for C++ (couldn't predict it ^^')
 
-f = open(youtuberId + ".txt", encoding = "utf-8")
-"""for line in f:
-    #if line[-1] == "\n":
-    #print(line)
-    if linesIndex % 10000 == 0:
-        print(linesIndex, line)
-    linesIndex += 1"""
-f.close()
+"""with open(youtuberId + '.txt', encoding = 'utf-8') as f:
+    for line in f:
+        #if line[-1] == "\n":
+        #print(line)
+        if linesIndex % 10000 == 0:
+            print(linesIndex, line)
+        linesIndex += 1"""
 
 print(linesIndex)
 
-with open(youtuberId + ".txt", encoding = "utf-8") as fp:
+with open(youtuberId + '.txt', encoding = 'utf-8') as fp:
     line = fp.readline()
     while line:
         print(linesIndex)
@@ -42,11 +41,11 @@ with open(youtuberId + ".txt", encoding = "utf-8") as fp:
         lineParts = line.split()
         linePartsLen = len(lineParts)
         if linePartsLen >= 5:
-            if lineParts[0][:2] == "Ug" and lineParts[1][:2] == "UC" and lineParts[2][:2] == "UC":
-                #if lineParts[2] == "bx613OLEn_Q":
+            if lineParts[0][:2] == 'Ug' and lineParts[1][:2] == 'UC' and lineParts[2][:2] == 'UC':
+                #if lineParts[2] == 'bx613OLEn_Q':
                 if lineParts[2] != youtuberId:
                     answeringCounter += 1
-                    #print(linesIndex, "answer")
+                    #print(linesIndex, 'answer')
                 #if len(lineParts[2]) != 11:
                 if lineParts[0] == lineParts[1]:
                     unknownCounter += 1
@@ -58,10 +57,10 @@ with open(youtuberId + ".txt", encoding = "utf-8") as fp:
                 if lineParts[3] == youtuberId:
                     channelsCommentsCounter += 1
                     #print(line)
-                    #print(linesIndex, "channel")
+                    #print(linesIndex, 'channel')
                 else:
                     videosCommentsCounter += 1
-                    #print(linesIndex, "video")
+                    #print(linesIndex, 'video')
 
 print(channelsCommentsCounter, videosCommentsCounter, answeringCounter, unknownCounter)
 
@@ -76,9 +75,8 @@ path = "C:\\Users\\Benjamin\\Desktop\\BensFolder\\DEV\\Candco\\CPP\\Projects\\Yo
 
 os.chdir(path)
 
-f = open(youtuberId + ".txt")
-lines = f.readlines()
-f.close()
+with open(youtuberId + '.txt') as f:
+    lines = f.readlines()
 
 videosCommentsCounter = 0
 
@@ -102,9 +100,8 @@ REAL_KEY = 'YOUR_API_KEY'
 
 def getURL(url):
     url = url.replace(KEY, REAL_KEY)
-    f = requests.get(url)
-    content = f.text
-    return content
+    data = requests.get(url).json()
+    return data
 
 commentsOnChannel = 0
 
@@ -112,7 +109,6 @@ commentsOnChannel = 0
 
 def scrap(pageToken = ''):
     url = 'https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&channelId=' + youtuberId + '&key=' + KEY
-    content = getURL(url)
-    data = json.loads(content)
+    data = getURL(url)
 
 scrap()

@@ -7,7 +7,7 @@ import requests
 import subprocess
 import shlex
 
-KEY = "YOUR_API_KEY"
+KEY = 'YOUR_API_KEY'
 separator = '|SEPARATOR|'
 
 def increaseRelation(src, dest):
@@ -57,17 +57,17 @@ def scrape(youtuberId, comments, video_id, token=None):
 
     if token:
         results = youtube.commentThreads().list(
-            part="snippet,replies",
+            part='snippet,replies',
             videoId=video_id,
             pageToken=token,
-            textFormat="plainText",
+            textFormat='plainText',
             maxResults=100
         ).execute()
     else:
         results = youtube.commentThreads().list(
-            part="snippet,replies",
+            part='snippet,replies',
             videoId=video_id,
-            textFormat="plainText",
+            textFormat='plainText',
             maxResults=100
         ).execute()
 
@@ -103,22 +103,22 @@ def workVideo(youtuberId, videoId):
 
 #workVideo('gdZLi9oWNZg')#'_ZPpU7774DQ')
 
-def getURL(url):
+def getItem(url):
     response = requests.get(url)
-    return response.text
+    return response.json()['items'][0]
 
 def isFrench(youtuberId): # approved
     url = f'https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={youtuberId&key={KEY}'
-    content = getURL(url)
-    return '"country": "FR"' in content
+    item = getItem(url)
+    return item['snippet']['country'] == 'FR'
 
 def workChannel(youtuberId):
     #url = f'https://www.googleapis.com/youtube/v3/search?key={KEY}&channelId={youtuberId}&part=snippet,id&order=date&maxResults=50' # used to be 20
     #print('isFrench', isFrench(youtuberId))
     if isFrench(youtuberId):
         url = f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}' # could merge request or make a cache with isFrench because can ask both for cost 1
-        content = getURL(url)
-        uploadsPlaylist = content.split('"uploads": "')[1].split('"')[0]
+        item = getItem(url)
+        uploadsPlaylist = item['contentDetails']['relatedPlaylists']['uploads']
         #print(uploadsPlaylist)
         cmd = f'youtube-dl -j --flat-playlist {shlex.quote(\'https://www.youtube.com/playlist?list={uploadsPlaylist}\')} | jq -r .id'
         s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -127,8 +127,7 @@ def workChannel(youtuberId):
         ids = idsStr.split("\\n")
         idsLen = len(ids)
         #print(idsLen)
-        for idsIndex in range(idsLen):
-            id = ids[idsIndex]
+        for id in ids:
             workVideo(youtuberId, id)
             #print(id)
 

@@ -151,7 +151,7 @@ def workVideo(youtuberId, videoId):
 
 #workVideo('gdZLi9oWNZg')#'_ZPpU7774DQ')
 
-def getURL(url):
+def getItem(url):
     originalURL = url
     log('before: ' + url)
     url = url.replace('KEY', REAL_KEY)
@@ -165,15 +165,15 @@ def getURL(url):
         error = response.status_code != 200
     if error:
         changeKey()
-        return getURL(originalURL)
-    return response.text
+        return getItem(originalURL)
+    return response.json()['items'][0]
 
 def isFrench(youtuberId): # approved
     global costConsumed
     costConsumed += 1
     url = f'https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={youtuberId}&key={KEY}'
-    content = getURL(url)
-    return '"country": "FR"' in content
+    item = getItem(url)
+    return item['snippet']['country']== 'FR'
 
 def workChannel(youtuberId):
     #url = f'https://www.googleapis.com/youtube/v3/search?key={KEY}&channelId={youtuberId}&part=snippet,id&order=date&maxResults=50' # used to be 20
@@ -182,8 +182,8 @@ def workChannel(youtuberId):
     if isFrench(youtuberId):
         costConsumed += 1
         url = f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}' # could merge request or make a cache with isFrench because can ask both for cost 1
-        content = getURL(url)
-        uploadsPlaylist = content.split('"uploads": "')[1].split('"')[0]
+        item = getItem(url)
+        uploadsPlaylist = item['contentDetails']['relatedPlaylists']['uploads']
         #log(uploadsPlaylist)
         cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
         s = subprocess.Popen(cmd, stdout=subprocess.PIPE)
