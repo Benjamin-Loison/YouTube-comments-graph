@@ -22,7 +22,7 @@ def getURL(url):
     return res.decode('utf-8')
 
 def exec(cmd):
-    return subprocess.check_output(cmd, shell = True)
+    return subprocess.check_output(cmd, shell = True).decode('utf-8')
 
 BenjaminLoisonSecondary = 'UCt5USYpzzMCYhkirVQGHwKQ'
 BenjaminLoison = 'UCF_UozwQBJY4WHZ7yilYkjA'
@@ -58,7 +58,7 @@ def scrap(token):
     cmd = 'curl -s \'https://www.youtube.com/youtubei/v1/browse?key=YOUR_API_KEY\' -H \'Content-Type: application/json\' --data-raw \'{"context":{"client":{"clientName":"WEB","clientVersion":"CENSORED"}},"continuation":"' + token + '"}\''
     cmd = cmd.replace('"', '\\"').replace("\'", '"')
     beginTime = time.time()
-    content = exec(cmd).decode('utf-8')
+    content = exec(cmd)
     endTime = time.time()
     log('request took ' + str(endTime - beginTime) + ' s')
     # not always 30 videos per answer (not talking about the last) - France24
