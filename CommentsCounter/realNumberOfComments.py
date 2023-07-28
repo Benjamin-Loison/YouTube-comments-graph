@@ -2,7 +2,11 @@
 
 # can only check youtube channels with up to 5 000 videos with such a key management system - well up to around 10 000 videos with new slicing system
 
-import json, requests, subprocess#, os
+import json
+import requests
+import subprocess
+#import os
+import shlex
 
 #youtuberId = 'UCAdyNOE80FsFPYlFliyXfwQ'#'UCdTyuXgmJkG_O8_75eqej-w'#'UCpWaR3gNAQGsX48cIlQC0qw'#'UC-GI5LST5T3Gw93yZxjdFaw'#'UCLMKLU-ZuDQIsbjMvR3bbog'#'UCWeg2Pkate69NFdBeuRFTAw'
 KEY = 'KEY'
@@ -72,7 +76,7 @@ def checkYoutuber(youtuberId):
     #print(data)
     uploadsPlaylist = data['items'][0]['contentDetails']['relatedPlaylists']['uploads']
     #print(uploadsPlaylist)
-    cmd = f'youtube-dl -j --flat-playlist "https://www.youtube.com/playlist?list={uploadsPlaylist}" | jq -r ".id"'
+    cmd = f'youtube-dl -j --flat-playlist {shlex.quote(f\'https://www.youtube.com/playlist?list={uploadsPlaylist}\') | jq -r .id'
     idsStr = exec(cmd)
     slices = []
     if True:#idsStr != '': # otherwise problem of TheVoiceFR and should treat this case in a cleaner manner to have real comments number

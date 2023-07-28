@@ -2,7 +2,10 @@
 
 # copied from main
 
-import apiclient, requests, subprocess
+import apiclient
+import requests
+import subprocess
+import shlex
 
 KEY = "YOUR_API_KEY"
 separator = '|SEPARATOR|'
@@ -117,7 +120,7 @@ def workChannel(youtuberId):
         content = getURL(url)
         uploadsPlaylist = content.split('"uploads": "')[1].split('"')[0]
         #print(uploadsPlaylist)
-        cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
+        cmd = f'youtube-dl -j --flat-playlist {shlex.quote(\'https://www.youtube.com/playlist?list={uploadsPlaylist}\')} | jq -r .id'
         s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         idsStr = s.stdout.read().decode('utf-8')
         #print(subprocess_return)
