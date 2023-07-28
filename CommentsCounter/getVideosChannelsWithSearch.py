@@ -19,7 +19,7 @@ maxResults = 50
 with open('..\\CPP\\keys.txt') as f:
     lines = f.readlines()
 for line in lines:
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     keys += [line]
 REAL_KEY = keys[keysIndex]

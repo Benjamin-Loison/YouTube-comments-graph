@@ -28,7 +28,7 @@ def removeFromFile(file, line):
 accountsLen = len(accounts)
 for accountsIndex in range(accountsLen):
     account = accounts[accountsIndex]
-    if account[-1] == "\n":
+    if account[-1] == '\n':
         account = account[:-1]
     accounts[accountsIndex] = account
 
@@ -47,7 +47,7 @@ for linesIndex in range(keysLinesLen):
     line = keysLines[linesIndex]
     #if accounts[linesIndex] != "YOUR_EMAIL":
     #    continue
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     #if line != "YOUR_API_KEY":
     #    continue
@@ -81,11 +81,11 @@ def write(fileName, lines):
     f = open(fileName, 'w')
     for linesIndex in range(linesLen):
         line = lines[linesIndex]
-        if line[-1] == "\n":
+        if line[-1] == '\n':
             line = line[:-1]
         f.write(line)
         if linesIndex < linesLen - 1:
-            f.write("\n")
+            f.write('\n')
     f.close()
     callProcess = subprocess.Popen(['dos2unix', fileName]) # also working on Windows
 
@@ -101,7 +101,7 @@ if removedLen > 0:
         linesIndex, key, account = removedEl
         keysLines = keysLines[:linesIndex] + keysLines[linesIndex + 1:]
         accounts = accounts[:linesIndex] + accounts[linesIndex + 1:]
-        f.write("\n" + key + ' ' + account)
+        f.write('\n' + key + ' ' + account)
     f.close()
     write(keysFile, keysLines)
     write(accountsFile, accounts)

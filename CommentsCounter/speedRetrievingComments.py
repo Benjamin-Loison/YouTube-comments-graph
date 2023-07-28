@@ -20,7 +20,7 @@ timeIndex = 0
 linesLen = len(lines)
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     if pattern0 in line and pattern1 in line: # endsWith(line, " - 0")
         #print(timeIndex)

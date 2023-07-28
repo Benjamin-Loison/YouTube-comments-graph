@@ -21,7 +21,7 @@ keys = []
 with open('../CPP/keys.txt') as f:
     lines = f.readlines()
 for line in lines:
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     keys += [line]
 REAL_KEY = keys[keysIndex]
@@ -59,7 +59,7 @@ def getURL(url):
 def exec(cmd):
     return subprocess.check_output(cmd, shell=True).decode('utf-8')
 
-def log(s, endLog = "\n"):
+def log(s, endLog = '\n'):
     print(s, end  = endLog)
     with open('logLog.txt', 'a') as fLog:
         fLog.write(s + endLog)
@@ -86,7 +86,7 @@ def checkYoutuber(youtuberId):
                 lines = f.readlines()
             idsLen = len(lines)
             for line in lines:
-                if line[-1] == "\n":
+                if line[-1] == '\n':
                     line = line[:-1]
                 ids += [line]
             print(f'new idsLen: {idsLen}')
@@ -172,7 +172,7 @@ with open('clean.txt') as fClean:
     linesClean = fClean.readlines()
 youtuberNames = []
 for line in linesClean:
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     youtuberName = line.split(' comments number: ')[0]
     youtuberNames += [youtuberName]
@@ -182,7 +182,7 @@ for line in linesClean:
 linesLen = len(lines)
 for linesIndex in range(92, linesLen):#linesLen - 2, -1, -1):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     log(f'working on {youtuberNames[linesIndex]} {linesIndex} / {linesLen}', ' - ')
     checkYoutuber(line)"""

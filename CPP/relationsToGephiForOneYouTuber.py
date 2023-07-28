@@ -29,7 +29,7 @@ for linesIndex in range(linesLen):
     #if linesIndex % slice == 0:
     #    print(linesIndex // slice)
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     lineParts = line.split()
     src, dest = lineParts[0], lineParts[1]

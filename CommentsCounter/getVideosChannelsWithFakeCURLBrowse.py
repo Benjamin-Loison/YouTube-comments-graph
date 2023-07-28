@@ -101,6 +101,6 @@ with open(f'videos/{youtuberId}.txt', 'w') as f:
         videoId = videosIds[videosIdsIndex]
         f.write(videoId)
         if videosIdsIndex != videosIdsLen - 1:
-            f.write("\n")
+            f.write('\n')
 
 # errorsCount: 42 for euronewsInFrench

@@ -32,7 +32,7 @@ for r, d, files in os.walk('channels'):
         slice = linesLen // 100
         for linesIndex in range(linesLen):
             line = lines[linesIndex]
-            if line[-1] == "\n":
+            if line[-1] == '\n':
                 line = line[:-1]
             lineParts = line.split()
             src, dest = lineParts[0], lineParts[1]

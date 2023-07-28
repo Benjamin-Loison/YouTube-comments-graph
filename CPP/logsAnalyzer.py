@@ -14,7 +14,7 @@ def endsWith(subject, pattern):
 linesLen = len(lines)
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     if endsWith(line, " - 0"):
         print(line)

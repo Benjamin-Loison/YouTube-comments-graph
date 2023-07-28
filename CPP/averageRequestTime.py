@@ -15,7 +15,7 @@ totalTime, numberTime = 0, 0
 linesLen = len(lines)
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     if ": request took " in line:
         lineParts = line.split(": request took ") # we also consider non api requests here

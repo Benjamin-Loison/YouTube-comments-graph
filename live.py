@@ -44,7 +44,7 @@ def log(s):
     s = now + ': ' + s
     print(s)
     with open(logsFile, 'a') as fLogs:
-        fLogs.write(s + "\n")
+        fLogs.write(s + '\n')
 
 def debug(s):
     if True:

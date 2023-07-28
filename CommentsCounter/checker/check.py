@@ -21,7 +21,7 @@ linesIndex = 0
 
 """with open(youtuberId + '.txt', encoding = 'utf-8') as f:
     for line in f:
-        #if line[-1] == "\n":
+        #if line[-1] == '\n':
         #print(line)
         if linesIndex % 10000 == 0:
             print(linesIndex, line)
@@ -35,7 +35,7 @@ with open(youtuberId + '.txt', encoding = 'utf-8') as fp:
         print(linesIndex)
         line = fp.readline()
         linesIndex += 1
-        if line[-1] == "\n":
+        if line[-1] == '\n':
             #print('hey')
             line = line[:-1]
         lineParts = line.split()
@@ -83,7 +83,7 @@ videosCommentsCounter = 0
 linesLen = len(lines)
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     lineParts = line.split()
     linePartsLen = len(lineParts)

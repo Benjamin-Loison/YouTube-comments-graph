@@ -19,7 +19,7 @@ for linesIndex in range(linesLen):
     if linesIndex % 10000 == 0:
         print(linesIndex)
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     if not line in l:
         l += [line]
@@ -32,7 +32,7 @@ for lIndex in range(lLen):
     lEl = l[lIndex]
     f.write(lEl)
     if lIndex < lLen - 1:
-        f.write("\n")
+        f.write('\n')
 f.close()
 
 print("written")

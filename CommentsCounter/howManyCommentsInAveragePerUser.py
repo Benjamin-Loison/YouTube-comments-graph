@@ -18,7 +18,7 @@ linesLen = len(lines)
 commenters = linesLen
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     lineParts = line.split()
     commenter = lineParts[0]
@@ -49,9 +49,9 @@ linesLen = len(lines) # not considering here multilines comments
 for linesIndex in range(linesLen - 1):
     line = lines[linesIndex]
     nextLine = lines[linesIndex + 1]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
-    if nextLine[-1] == "\n":
+    if nextLine[-1] == '\n':
         nextLine = nextLine[:-1]
     lineParts = line.split()
     linePartsLen = len(lineParts)
@@ -65,7 +65,7 @@ print(comments / commenters)
 
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     """lineParts = line.split()
     linePartsLen = len(lineParts)

@@ -12,7 +12,7 @@ linesLen = len(lines)
 ids = []
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     if not line in ids:
         ids += [line]
@@ -26,7 +26,7 @@ f.close()
 linesLen = len(lines)
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
-    if line[-1] == "\n":
+    if line[-1] == '\n':
         line = line[:-1]
     lineParts = line.split()
     id = ids[linesIndex]

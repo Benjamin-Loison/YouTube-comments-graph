@@ -47,7 +47,7 @@ def scrape(comments, video_id, f, token=None):
                 comments.append(comment)"""
 
     #comments += [results]
-    f.write(str(results) + "\n")
+    f.write(str(results) + '\n')
 
     if 'nextPageToken' in results:
         scrape(comments, video_id, f, results['nextPageToken'])

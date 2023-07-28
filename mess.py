@@ -82,8 +82,8 @@ def workVideo(videoId):
         channel, intensity = channelIntensity
         keyName = names[key]
         channelName = names[channel]
-        #f.write(key + ' ' + channel + ' ' + str(intensity) + "\n")
-        f.write(keyName + separator + channelName + separator + str(intensity) + "\n")
+        #f.write(key + ' ' + channel + ' ' + str(intensity) + '\n')
+        f.write(keyName + separator + channelName + separator + str(intensity) + '\n')
     f.close()
 
 workVideo('_ZPpU7774DQ')
