@@ -85,19 +85,18 @@ def workVideo(youtuberId, videoId):
     names[youtuberId] = 'SQUEEZIE'; # TODO: auto
     #names[youtuberId] = 'HYBE LABELS';
     #separator = '|'
-    f = open('videos/' + videoId + '.txt', 'w')
-    for realKey in relations:
-        intensity = relations[realKey]
-        #print('realKey: ' + realKey + ' !');
-        parts = realKey.split(separator)
-        #print(parts);
-        src, dest = parts
-        #key, channel = parts
-        keyName = names[src]
-        channelName = names[dest]
-        #f.write(key + ' ' + channel + ' ' + str(intensity) + "\n")
-        f.write(keyName + separator + channelName + separator + str(intensity) + "\n")
-    f.close()
+    with open(f'videos/{videoId}.txt', 'w') as f:
+        for realKey in relations:
+            intensity = relations[realKey]
+            #print(f'realKey: {realKey} !');
+            parts = realKey.split(separator)
+            #print(parts);
+            src, dest = parts
+            #key, channel = parts
+            keyName = names[src]
+            channelName = names[dest]
+            #f.write(f"{key} {channel} {intensity}\n")
+            f.write(f"{keyName} {separator} {channelName} {separator} {intensity}\n")
 
 #workVideo('gdZLi9oWNZg')#'_ZPpU7774DQ')
 
@@ -106,19 +105,19 @@ def getURL(url):
     return response.text
 
 def isFrench(youtuberId): # approved
-    url = 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=' + youtuberId + '&key=' + KEY
+    url = f'https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id={youtuberId&key={KEY}'
     content = getURL(url)
     return '"country": "FR"' in content
 
 def workChannel(youtuberId):
-    #url = 'https://www.googleapis.com/youtube/v3/search?key=' + KEY + '&channelId=' + youtuberId + '&part=snippet,id&order=date&maxResults=50' # used to be 20
+    #url = f'https://www.googleapis.com/youtube/v3/search?key={KEY}&channelId={youtuberId}&part=snippet,id&order=date&maxResults=50' # used to be 20
     #print('isFrench', isFrench(youtuberId))
     if isFrench(youtuberId):
-        url = 'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id=' + youtuberId + '&key=' + KEY # could merge request or make a cache with isFrench because can ask both for cost 1
+        url = f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}' # could merge request or make a cache with isFrench because can ask both for cost 1
         content = getURL(url)
         uploadsPlaylist = content.split('"uploads": "')[1].split('"')[0]
         #print(uploadsPlaylist)
-        cmd = "youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list=" + uploadsPlaylist + "\" | jq -r '.id'"
+        cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
         s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
         idsStr = str(s.stdout.read())[2:-3]
         #print(subprocess_return)
