@@ -121,8 +121,7 @@ def workChannel(youtuberId):
         uploadsPlaylist = item['contentDetails']['relatedPlaylists']['uploads']
         #print(uploadsPlaylist)
         cmd = f'youtube-dl -j --flat-playlist {shlex.quote(\'https://www.youtube.com/playlist?list={uploadsPlaylist}\')} | jq -r .id'
-        s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-        idsStr = s.stdout.read().decode('utf-8')
+        idsStr = subprocess.check_output(cmd, shell=True).decode('utf-8')
         #print(subprocess_return)
         ids = idsStr.split("\\n")
         idsLen = len(ids)
