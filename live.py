@@ -186,7 +186,7 @@ def workChannel(youtuberId):
         uploadsPlaylist = content.split('"uploads": "')[1].split('"')[0]
         #log(uploadsPlaylist)
         cmd = f"youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list={uploadsPlaylist}\" | jq -r '.id'"
-        s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+        s = subprocess.Popen(cmd, stdout=subprocess.PIPE)
         idsStr = str(s.stdout.read())[2:-3]
         #log(subprocess_return)
         ids = idsStr.split("\\n")
@@ -194,7 +194,7 @@ def workChannel(youtuberId):
         #log(idsLen)
         for idsIndex in range(idsLen):
             id = ids[idsIndex]
-            log(str(idsIndex) + " \ " + str(idsLen) + ' ' + str(len(relations)) + ' ' + str(costConsumed))
+            log(f'{idsIndex} \ {idsLen} {len(relations)} {costConsumed}')
             workVideo(youtuberId, id)
             #log(id)
 

@@ -14,9 +14,8 @@ keys = []
 
 #os.chdir(path)
 
-f = open('../CPP/keys.txt')
-lines = f.readlines()
-f.close()
+with open('../CPP/keys.txt') as f:
+    lines = f.readlines()
 linesLen = len(lines)
 for linesIndex in range(linesLen):
     line = lines[linesIndex]
@@ -43,12 +42,12 @@ def getURL(url):
     f = requests.get(url)
     content = f.text
     #print(content)
-    if "The request cannot be completed because you have exceeded your " in content:
+    if 'The request cannot be completed because you have exceeded your ' in content:
         if keysIndex >= keysLen: # warning looping continously if no available key
             keysIndex = 0
         else:
             keysIndex += 1
-        log("new key index: " + str(keysIndex))
+        log('new key index: ' + str(keysIndex))
         #print(keysIndex)
         REAL_KEY = keys[keysIndex]
 
@@ -62,19 +61,18 @@ def exec(cmd):
 
 def log(s, endLog = "\n"):
     print(s, end  = endLog)
-    fLog = open('logLog.txt', 'a')
-    fLog.write(s + endLog)
-    fLog.close()
+    with open('logLog.txt', 'a') as fLog:
+        fLog.write(s + endLog)
 
 #f = open('log.txt', 'w')
 
 def checkYoutuber(youtuberId):
-    content = getURL('https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id=' + youtuberId + '&key=' + KEY)
+    content = getURL(f'https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&id={youtuberId}&key={KEY}')
     data = json.loads(content)
     #print(data)
     uploadsPlaylist = data['items'][0]['contentDetails']['relatedPlaylists']['uploads']
     #print(uploadsPlaylist)
-    cmd = 'youtube-dl -j --flat-playlist "https://www.youtube.com/playlist?list=' + uploadsPlaylist + '" | jq -r ".id"'
+    cmd = f'youtube-dl -j --flat-playlist "https://www.youtube.com/playlist?list={uploadsPlaylist}" | jq -r ".id"'
     res = exec(cmd)
     idsStr = str(res)[2:-3]
     slices = []
@@ -83,12 +81,11 @@ def checkYoutuber(youtuberId):
         ids = idsStr.split("\\n")
         #print(ids)
         idsLen = len(ids)
-        print('current idsLen: ' + str(idsLen))
+        print(f'current idsLen: {idsLen}')
         if idsLen >= 19500 or idsStr == '':
             ids = []
-            f = open('videos/' + youtuberId + '.txt')
-            lines = f.readlines()
-            f.close()
+            with open(f'videos/{youtuberId}.txt') as f:
+                lines = f.readlines()
             linesLen = len(lines)
             idsLen = linesLen
             for linesIndex in range(linesLen):
@@ -174,31 +171,26 @@ def checkYoutuber(youtuberId):
                 totalComments += commentsNumber
 
     #print(totalComments)
-    f = open('log.txt', 'a') # otherwise doesn't seem to save until program stop, it seems that in case of crash no problem but I want to be sure
-    f.write(str(totalComments) + "\n")
-    f.close()
+    with open('log.txt', 'a') as f: # otherwise doesn't seem to save until program stop, it seems that in case of crash no problem but I want to be sure
+        f.write(f"{totalComments}\n")
 
-fClean = open('clean.txt')
-linesClean = fClean.readlines()
-fClean.close()
-linesCleanLen = len(linesClean)
+with open('clean.txt') as fClean:
+    linesClean = fClean.readlines()
 youtuberNames = []
-for linesCleanIndex in range(linesCleanLen):
-    line = linesClean[linesCleanIndex]
+for line in linesClean:
     if line[-1] == "\n":
         line = line[:-1]
     youtuberName = line.split(' comments number: ')[0]
     youtuberNames += [youtuberName]
 
-"""fIds = open('french100Ids.txt')
-lines = fIds.readlines()
-fIds.close()
+"""with open('french100Ids.txt') as fIds:
+    lines = fIds.readlines()
 linesLen = len(lines)
 for linesIndex in range(92, linesLen):#linesLen - 2, -1, -1):
     line = lines[linesIndex]
     if line[-1] == "\n":
         line = line[:-1]
-    log("working on " + youtuberNames[linesIndex] + " " + str(linesIndex) + ' / ' + str(linesLen), ' - ')
+    log(f'working on {youtuberNames[linesIndex]} {linesIndex} / {linesLen}', ' - ')
     checkYoutuber(line)"""
 
 #f.close()
