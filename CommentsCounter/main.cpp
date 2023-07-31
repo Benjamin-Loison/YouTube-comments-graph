@@ -26,7 +26,9 @@ string getYoutuberId(string youtuberName),
 	   getRedirectedURL(string url),
 	   replace(string, const string&, const string& = ""),
 	   withSpaces(long long amount),
-	   toString(vector<string> vec);
+	   toString(vector<string> vec),
+	   escapeShellArgument(string shellArgument),
+	   replaceAll(string str, const string& from, const string& to);
 vector<vector<string>> getSlicesOfVideos(vector<string> videosIds, unsigned int slice);
 vector<string> split(string s, string delimiter),
 	           getVideosIds(string youtuberId),
@@ -262,7 +264,7 @@ vector<string> getVideosIds(string youtuberId)
 		return ids;
 	}
     string uploadsPlaylist = split(split(content, pattern)[1], "\"")[0],
-           cmd = "youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list=" + uploadsPlaylist + "\" | jq -r '.id'",
+           cmd = "youtube-dl -j --flat-playlist " + escapeShellArgument("https://www.youtube.com/playlist?list=" + uploadsPlaylist) + " | jq -r '.id'",
            idsStr = exec(cmd);
 	//print("cmd: " + cmd);
 	vector<string> ids = split(idsStr, "\n");
@@ -450,4 +452,20 @@ string toString(vector<string> vec)
 bool writeFile(string filePath, string option, vector<string> toWrite)
 {
 	return writeFile(filePath, option, toString(toWrite));
+}
+
+string escapeShellArgument(string shellArgument)
+{
+    return "'" + replaceAll(shellArgument, "'", "'\\''") + "'";
+}
+
+string replaceAll(string str, const string& from, const string& to)
+{
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != string::npos)
+    {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+    }
+    return str;
 }
