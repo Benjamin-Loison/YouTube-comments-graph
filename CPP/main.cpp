@@ -99,9 +99,10 @@ string getHTTPS(string url, unsigned int threadsIndex, bool needFake = false, bo
 	   toString(vector<string>),
 	   replaceAll(string, const string&, const string& = ""),
 	   scrap(string youtuberId, FILE* detailsFile, string nextPageToken, unsigned int callsIndex, map<string, unsigned int>* relations, map<string, string>* names, map<string, string>* commentsToChannels, unsigned int* channelCommentsNumber, unsigned int threadsIndex, string videoId = ""),
-	   escape(string url),
+	   escapeUrl(string url),
 	   join(vector<string>, unsigned int = 0, int = -1, string = " "),
-	   replaceLast(string subject, string search, string replace = "");
+	   replaceLast(string subject, string search, string replace = ""),
+	   escapeShellArgument(string shellArgument);
 
 mutex threadPoolMutex,
 	  threadPoolChannelMutex;
@@ -895,7 +896,7 @@ string getMostViewedVideo(string youtuberId, unsigned int threadsIndex)
 
 bool treatWebsite(string link, unsigned int threadsIndex)
 {
-	string cmd = "whois -h whois.verisign-grs.com " + link,
+	string cmd = "whois -h whois.verisign-grs.com " + escapeShellArgument(link),
 		   res = exec(cmd, threadsIndex);
 	bool isOVH = contains(res, "ovh.com");
 	if(!isOVH)
@@ -961,7 +962,7 @@ bool treatCountry(string link, unsigned int threadsIndex)
 		link = replace(link, "http://", "https://"); // otherwise have problem
 		//link = "https://" + replaceAll(url, "//", "/");
 		// -L required for oggy
-		string cmdId = "curl -s -L '" + escape(link) + "' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0' -H 'Accept: text/html' -H 'Cookie: datr=CENSORED; wd=1920x927; c_user=CENSORED; xs=CENSORED'", // cookie wasn't required for oggy but it is for tiboinshape - I promise it's the most reduced to be ok in all cases
+		string cmdId = "curl -s -L " + escapeShellArgument(escapeUrl(link)) + " -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0' -H 'Accept: text/html' -H 'Cookie: datr=CENSORED; wd=1920x927; c_user=CENSORED; xs=CENSORED'", // cookie wasn't required for oggy but it is for tiboinshape - I promise it's the most reduced to be ok in all cases
 		       contentId = exec(cmdId, threadsIndex); //getHTTPS(link, threadsIndex, /*false*/true, true); // curl 'https://www.facebook.com/Oggy.fanpage' doesn't give same output as in C++ with same parameters u_u
 		//log("cmd: " + cmd + " !", threadsIndex);
 		//log(content, threadsIndex);
@@ -975,7 +976,7 @@ bool treatCountry(string link, unsigned int threadsIndex)
 			//vector<string> parts = split(content, "\"fb://profile/"); // tiboinshape - not the right id
 			//unsigned short partsSize = parts.size();
 			//string cmdPage = "curl -s '" + link + "/about_profile_transparency' -H 'Accept: application/html' -H 'Cookie: wd=1920x927'",
-			string cmdPage = "curl -s 'https://" + replaceAll(escape(url) + "/about_profile_transparency", "//", "/") + "' -H 'Accept: application/html' -H 'Cookie: wd=1920x927'", // maybe already have "/" after link ? - yes at least sometimes ^^'
+			string cmdPage = "curl -s " + escapeShellArgument("https://" + replaceAll(escapeUrl(url) + "/about_profile_transparency", "//", "/")) + " -H 'Accept: application/html' -H 'Cookie: wd=1920x927'", // maybe already have "/" after link ? - yes at least sometimes ^^'
 			       contentPage = exec(cmdPage, threadsIndex);
 			vector<string> parts = split(contentPage, "\"profile_transparency_id\":\"");
 			unsigned short partsSize = parts.size();
@@ -984,7 +985,7 @@ bool treatCountry(string link, unsigned int threadsIndex)
 				//log("contentId: " + cmdId + ": " + contentId + " !", threadsIndex);
 				//log("contentPage: " + cmdPage + ": " + contentPage + " !", threadsIndex);
 				// I don't know where ' can be used in various URLs but even if the user can put even if doesn't work it makes me crash so have to patch everywhere
-				string cmdAbout = "curl -s 'https://" + replaceAll(escape(url) + "/about_contact_and_basic_info", "//", "/") + "' -H 'Accept: text/html' -H 'Cookie: wd=1920x927; c_user=CENSORED; xs=CENSORED'",
+				string cmdAbout = "curl -s " + escapeShellArgument("https://" + replaceAll(escapeUrl(url) + "/about_contact_and_basic_info", "//", "/")) + " -H 'Accept: text/html' -H 'Cookie: wd=1920x927; c_user=CENSORED; xs=CENSORED'",
 					   contentAbout = exec(cmdAbout, threadsIndex);
 				vector<string> parts = split(contentId, "\"message_box_id\":\""); // used to be commentAbout
 				unsigned short partsSize = parts.size();
@@ -1038,7 +1039,7 @@ bool treatCountry(string link, unsigned int threadsIndex)
 			part = partsParts[0];
 		}
 		log(part, threadsIndex);
-		string cmdAjax = "curl -s 'https://www.facebook.com/api/graphql' -H 'Cookie: c_user=CENSORED; xs=CENSORED' --data-raw 'fb_dtsg=CENSORED&variables={\"pageID\":\"" + part + "\"}&doc_id=CENSORED'";
+		string cmdAjax = "curl -s 'https://www.facebook.com/api/graphql' -H 'Cookie: c_user=CENSORED; xs=CENSORED' --data-raw " + escapeShellArgument("fb_dtsg=CENSORED&variables={\"pageID\":\"" + part + "\"}&doc_id=CENSORED");
 		//log(cmd, threadsIndex);
 		string contentAjax = exec(cmdAjax, threadsIndex);
 		//log(content, threadsIndex);
@@ -1076,7 +1077,7 @@ bool treatCountry(string link, unsigned int threadsIndex)
 	else if(startsWith(url, "www.twitter.com/")) // www.
 	{
 		string username = replace(url, "www.twitter.com/"), // www.
-			   cmd = "t whois @" + username,
+			   cmd = "t whois " + escapeShellArgument("@" + username),
 			   res = exec(cmd, threadsIndex);
 		vector<string> lines = split(res, "\n");
 		unsigned short linesSize = lines.size();
@@ -1336,7 +1337,7 @@ vector<string> getVideosAPI(string youtuberId, unsigned int threadsIndex)
 vector<string> getVideosYTDL(string youtuberId, unsigned int threadsIndex)
 {
 	string uploadsPlaylist = getVideosPlaylist(youtuberId, threadsIndex),
-           cmd = "youtube-dl -j --flat-playlist \"https://www.youtube.com/playlist?list=" + uploadsPlaylist + "\" | jq -r '.id'",
+           cmd = "youtube-dl -j --flat-playlist " + escapeShellArgument("https://www.youtube.com/playlist?list=" + uploadsPlaylist) + " | jq -r '.id'",
            idsStr = exec(cmd, threadsIndex);
     unsigned int idsStrLength = idsStr.length();
 	if(idsStrLength > 0)
@@ -1577,7 +1578,7 @@ string getHTTPS(string url, unsigned int threadsIndex, bool needFake, bool needF
 
 	// may Alan Turing forgive me for using the shell that way
 	// this escape seems useful only for wikipedia and soundcloud but let's use it there shouldn't be any escape of an escape
-	string cmd = "curl -s -L '" + escape(url) + "'";//, // SSL bug or have to implement lock system which isn't easy with my code - disabling verification peer and host ?
+	string cmd = "curl -s -L " + escapeShellArgument(escapeUrl(url));//, // SSL bug or have to implement lock system which isn't easy with my code - disabling verification peer and host ?
 	       //realCmd = cmd;
 	if(doesWebpageExist)
 	{
@@ -1806,7 +1807,7 @@ void log(string s, unsigned int threadsIndex)
 	print(s + " - " + convertNbToStr(threadsIndex));
 }
 
-string escape(string url)
+string escapeUrl(string url)
 {
 	return replaceAll(url, "'", "%27");
 	//return replaceAll(url, "'", "\\'"); // \' doesn't do the job :'( two times crashed because of this
@@ -1859,3 +1860,8 @@ int convertStrToInt(string str)
     return number;
 }
 
+// Source: https://stackoverflow.com/a/3669819
+string escapeShellArgument(string shellArgument)
+{
+    return "'" + replaceAll(shellArgument, "'", "'\\''") + "'";
+}
